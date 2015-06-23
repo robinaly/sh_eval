@@ -143,7 +143,7 @@ if __name__ == "__main__":
   TOLERANCE = opt.tolleranceWindow
 
   # read the qrel 
-  recs = map(formatQrel, open(qrel))
+  recs = map(formatQrel, do_open(qrel))
   recs.sort(key=lambda rec: (rec['anchorId'], rec['target']))
   anchors = set(map(lambda rec: rec['anchorId'], recs))
   rels = dict()
