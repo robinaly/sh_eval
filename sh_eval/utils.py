@@ -26,6 +26,46 @@ def sec2String(s):
   minutes, milliseconds = divmod(miliseconds, 60000)
   seconds = float(milliseconds) / 1000
   return "%d.%02d" % (minutes, seconds)
+  
+reH = re.compile("(\d\d):(\d\d):(\d\d)(?:.(\d+))?")
+def h2Sec(h): 
+  '''
+  00:05:53 to their number of seconds
+  '''
+  m = reH.match(h)
+  if not m:
+    print >>sys.stderr, h, 'doesn\'t match'
+  return int(m.group(1)) * 3600 + int(m.group(2)) * 60 + int(m.group(3)) + 1  
+
+def isRank(s):
+  try:
+    i =  int(s)
+    return i > 0
+  except:
+    return False
+  
+def isScore(s):
+  try:
+    i =  float(s)
+    return True
+  except:
+    return False
+
+
+def sec2H(sec): 
+  '''
+  converts a number of seconds into the format 00:05:53
+  '''
+  h, sec = divmod(sec, 3600)
+  m, sec = divmod(sec, 60)
+  return '%02d:%02d:%02d' % (h,m,sec)
+
+def overlapTime(s1, e1, s2, e2):
+  if s1 <= s2 and s2 <= e1: return True
+  if s2 <= s1 and s1 <= e2: return True
+  if s2 <= e1 and e1 <= e2: return True
+  if s1 <= e2 and e2 <= e1: return True
+  return False
 
 def overlaps(segment1,segment2):
   ''' checks if two time segments overlap '''
@@ -49,6 +89,17 @@ def isScore(s):
     return True
   except:
     return False
+
+def isTime(s):
+  m = re.match('(\d+).(\d+)', s)
+  if m == None: 
+    return False
+  if int(m.group(1)) < 0 : 
+    return False
+  if int(m.group(2)) < 0 or int(m.group(2)) > 60: 
+    return False
+  return True
+
 
 def ToSec(s):
   m = re.match('(\d+).(\d+)', s)
@@ -332,6 +383,13 @@ class RelJudge(Stat):
 
   def agg(self):
     return None
+
+taskTypesList = [
+  ('me15sava', 'MediaEal Search And Anchoring Task 2015'),
+  ('tv15lnk', 'TRECVid Hyperlinking Task 2015'),
+  ('me14sh',   'MediaEval Search and Hyperlinking 2014')
+]
+tasks, _ = zip(*taskTypesList)
 
 runTypesList = [
   ('S', 'Search run'),

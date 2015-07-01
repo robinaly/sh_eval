@@ -1,5 +1,7 @@
 #!/usr/bin/env python
 # Evaluation script for free-segment based search tasks.
+# See readme for usage
+
 # author: Robin Aly <r.aly@utwente.nl>
 # date: 2015-06-10
 #
@@ -195,6 +197,8 @@ if __name__ == "__main__":
     # only consider anchors from the predefined list
     if anchorId not in anchors:
       continue
+      
+    # get relevant / nonrelevant / judged items for this anchor
     qrels = rels[anchorId]
     qnonrels = nonRels[anchorId]
     qjudged = judged[anchorId]
@@ -242,7 +246,6 @@ if __name__ == "__main__":
     for m in measures:
       if m.relType() == "segment":      
         v = m.calc(relevanceStati, nrel=numrel)
-        #print m.fullName(), v, numrel, relevanceStati[:10]
       elif m.relType() == "bin":
         v = m.calc(relevanceStatiBin, nrel=numrelBin)
       elif m.relType() == "tol":

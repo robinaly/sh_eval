@@ -1,0 +1,1083 @@
+<?xml version="1.0" ?>
+<anchors>
+<anchor>
+   <anchorId>anchor_1</anchorId>
+   <refId>5508219d42b47e0ceb7ef6e8</refId>
+   <video>v20080514_093000_bbctwo_a_picture_of_britain</video>
+   <startTime>44.44</startTime>
+   <endTime>44.59</endTime>
+</anchor>
+
+<anchor>
+   <anchorId>anchor_2</anchorId>
+   <refId>5508219d42b47e0ceb7ef6e8</refId>
+   <video>v20080721_143000_bbctwo_castle_in_the_country</video>
+   <startTime>12.49</startTime>
+   <endTime>13.07</endTime>
+</anchor>
+
+<anchor>
+   <anchorId>anchor_3</anchorId>
+   <refId>5508219d42b47e0ceb7ef6e8</refId>
+   <video>v20080721_143000_bbctwo_castle_in_the_country</video>
+   <startTime>12.55</startTime>
+   <endTime>12.59</endTime>
+</anchor>
+
+<anchor>
+   <anchorId>anchor_4</anchorId>
+   <refId>5508219d42b47e0ceb7ef6e8</refId>
+   <video>v20080514_195000_bbctwo_strictly_black_grouse</video>
+   <startTime>0.37</startTime>
+   <endTime>0.58</endTime>
+</anchor>
+
+<anchor>
+   <anchorId>anchor_5</anchorId>
+   <refId>5508219d42b47e0ceb7ef6e8</refId>
+   <video>v20080601_110000_bbcone_countryfile</video>
+   <startTime>1.12</startTime>
+   <endTime>1.24</endTime>
+</anchor>
+
+<anchor>
+   <anchorId>anchor_6</anchorId>
+   <refId>5508219d42b47e0ceb7ef6e8</refId>
+   <video>v20080601_110000_bbcone_countryfile</video>
+   <startTime>1.30</startTime>
+   <endTime>1.45</endTime>
+</anchor>
+
+<anchor>
+   <anchorId>anchor_7</anchorId>
+   <refId>5509596142b47e1321cfa3b3</refId>
+   <video>v20080703_113000_bbcone_sun_sea_and_bargain</video>
+   <startTime>1.19</startTime>
+   <endTime>1.34</endTime>
+</anchor>
+
+<anchor>
+   <anchorId>anchor_8</anchorId>
+   <refId>5509596142b47e1321cfa3b3</refId>
+   <video>v20080713_110000_bbcone_countryfile</video>
+   <startTime>16.03</startTime>
+   <endTime>16.12</endTime>
+</anchor>
+
+<anchor>
+   <anchorId>anchor_9</anchorId>
+   <refId>5509596142b47e1321cfa3b3</refId>
+   <video>v20080713_110000_bbcone_countryfile</video>
+   <startTime>18.03</startTime>
+   <endTime>18.10</endTime>
+</anchor>
+
+<anchor>
+   <anchorId>anchor_10</anchorId>
+   <refId>5509596142b47e1321cfa3b3</refId>
+   <video>v20080707_110000_bbcone_to_buy_or_not</video>
+   <startTime>3.49</startTime>
+   <endTime>3.52</endTime>
+</anchor>
+
+<anchor>
+   <anchorId>anchor_11</anchorId>
+   <refId>5509596142b47e1321cfa3b3</refId>
+   <video>v20080707_110000_bbcone_to_buy_or_not</video>
+   <startTime>3.57</startTime>
+   <endTime>4.01</endTime>
+</anchor>
+
+<anchor>
+   <anchorId>anchor_12</anchorId>
+   <refId>5509596142b47e1321cfa3b3</refId>
+   <video>v20080707_110000_bbcone_to_buy_or_not</video>
+   <startTime>4.01</startTime>
+   <endTime>4.12</endTime>
+</anchor>
+
+<anchor>
+   <anchorId>anchor_13</anchorId>
+   <refId>5509596142b47e1321cfa3b3</refId>
+   <video>v20080707_110000_bbcone_to_buy_or_not</video>
+   <startTime>4.15</startTime>
+   <endTime>4.33</endTime>
+</anchor>
+
+<anchor>
+   <anchorId>anchor_14</anchorId>
+   <refId>5509596142b47e1321cfa3b3</refId>
+   <video>v20080707_110000_bbcone_to_buy_or_not</video>
+   <startTime>4.38</startTime>
+   <endTime>4.44</endTime>
+</anchor>
+
+<anchor>
+   <anchorId>anchor_15</anchorId>
+   <refId>55393ada42b47e0aa713a322</refId>
+   <video>v20080623_120000_bbctwo_wimbledon_2008</video>
+   <startTime>101.50</startTime>
+   <endTime>102.08</endTime>
+</anchor>
+
+<anchor>
+   <anchorId>anchor_16</anchorId>
+   <refId>55393ada42b47e0aa713a322</refId>
+   <video>v20080705_132500_bbcone_wimbledon_2008</video>
+   <startTime>63.00</startTime>
+   <endTime>63.41</endTime>
+</anchor>
+
+<anchor>
+   <anchorId>anchor_17</anchorId>
+   <refId>55393ada42b47e0aa713a322</refId>
+   <video>v20080701_200000_bbctwo_today_at_wimbledon</video>
+   <startTime>14.41</startTime>
+   <endTime>15.20</endTime>
+</anchor>
+
+<anchor>
+   <anchorId>anchor_18</anchorId>
+   <refId>55393ae142b47e0aa890719c</refId>
+   <video>v20080519_170000_bbctwo_great_british_menu</video>
+   <startTime>8.09</startTime>
+   <endTime>8.49</endTime>
+</anchor>
+
+<anchor>
+   <anchorId>anchor_19</anchorId>
+   <refId>5539401542b47e0aa713a326</refId>
+   <video>v20080607_203000_bbcthree_top_gear</video>
+   <startTime>45.23</startTime>
+   <endTime>45.25</endTime>
+</anchor>
+
+<anchor>
+   <anchorId>anchor_20</anchorId>
+   <refId>5539401542b47e0aa713a326</refId>
+   <video>v20080727_200000_bbctwo_top_gear</video>
+   <startTime>20.38</startTime>
+   <endTime>20.58</endTime>
+</anchor>
+
+<anchor>
+   <anchorId>anchor_21</anchorId>
+   <refId>5539475542b47e0aa890719e</refId>
+   <video>v20080517_132000_bbctwo_revealed</video>
+   <startTime>4.44</startTime>
+   <endTime>5.12</endTime>
+</anchor>
+
+<anchor>
+   <anchorId>anchor_22</anchorId>
+   <refId>5539475542b47e0aa890719e</refId>
+   <video>v20080602_120000_bbctwo_the_daily_politics</video>
+   <startTime>25.59</startTime>
+   <endTime>26.15</endTime>
+</anchor>
+
+<anchor>
+   <anchorId>anchor_23</anchorId>
+   <refId>5539475542b47e0aa890719e</refId>
+   <video>v20080602_120000_bbctwo_the_daily_politics</video>
+   <startTime>26.30</startTime>
+   <endTime>26.35</endTime>
+</anchor>
+
+<anchor>
+   <anchorId>anchor_24</anchorId>
+   <refId>5539475542b47e0aa890719e</refId>
+   <video>v20080602_120000_bbctwo_the_daily_politics</video>
+   <startTime>27.07</startTime>
+   <endTime>27.15</endTime>
+</anchor>
+
+<anchor>
+   <anchorId>anchor_25</anchorId>
+   <refId>553947a642b47e0aa890719f</refId>
+   <video>v20080629_190000_bbcthree_glastonbury_mark_ronsonthe_pigeon</video>
+   <startTime>48.50</startTime>
+   <endTime>49.01</endTime>
+</anchor>
+
+<anchor>
+   <anchorId>anchor_26</anchorId>
+   <refId>553947a642b47e0aa890719f</refId>
+   <video>v20080628_161500_bbctwo_glastonbury</video>
+   <startTime>5.54</startTime>
+   <endTime>6.38</endTime>
+</anchor>
+
+<anchor>
+   <anchorId>anchor_27</anchorId>
+   <refId>553947a642b47e0aa890719f</refId>
+   <video>v20080628_161500_bbctwo_glastonbury</video>
+   <startTime>7.05</startTime>
+   <endTime>7.12</endTime>
+</anchor>
+
+<anchor>
+   <anchorId>anchor_28</anchorId>
+   <refId>55394ce142b47e0aa713a32a</refId>
+   <video>v20080709_113000_bbctwo_the_daily_politics</video>
+   <startTime>39.24</startTime>
+   <endTime>39.47</endTime>
+</anchor>
+
+<anchor>
+   <anchorId>anchor_29</anchorId>
+   <refId>55394ce142b47e0aa713a32a</refId>
+   <video>v20080709_113000_bbctwo_the_daily_politics</video>
+   <startTime>39.50</startTime>
+   <endTime>40.15</endTime>
+</anchor>
+
+<anchor>
+   <anchorId>anchor_30</anchorId>
+   <refId>55394ce142b47e0aa713a32a</refId>
+   <video>v20080709_113000_bbctwo_the_daily_politics</video>
+   <startTime>41.12</startTime>
+   <endTime>41.26</endTime>
+</anchor>
+
+<anchor>
+   <anchorId>anchor_31</anchorId>
+   <refId>553e4b4542b47e3d4e0b6ea1</refId>
+   <video>v20080517_193000_bbcthree_top_gear</video>
+   <startTime>53.04</startTime>
+   <endTime>53.07</endTime>
+</anchor>
+
+<anchor>
+   <anchorId>anchor_32</anchorId>
+   <refId>553e4b4542b47e3d4e0b6ea1</refId>
+   <video>v20080530_183000_bbcone_bbc_london_news</video>
+   <startTime>10.40</startTime>
+   <endTime>10.43</endTime>
+</anchor>
+
+<anchor>
+   <anchorId>anchor_33</anchorId>
+   <refId>553e4b4542b47e3d4e0b6ea1</refId>
+   <video>v20080530_183000_bbcone_bbc_london_news</video>
+   <startTime>10.43</startTime>
+   <endTime>10.46</endTime>
+</anchor>
+
+<anchor>
+   <anchorId>anchor_34</anchorId>
+   <refId>553e4b4542b47e3d4e0b6ea1</refId>
+   <video>v20080530_183000_bbcone_bbc_london_news</video>
+   <startTime>11.24</startTime>
+   <endTime>11.27</endTime>
+</anchor>
+
+<anchor>
+   <anchorId>anchor_35</anchorId>
+   <refId>553e4b4542b47e3d4e0b6ea1</refId>
+   <video>v20080530_183000_bbcone_bbc_london_news</video>
+   <startTime>12.08</startTime>
+   <endTime>12.10</endTime>
+</anchor>
+
+<anchor>
+   <anchorId>anchor_36</anchorId>
+   <refId>553e4b4542b47e3d4e0b6ea1</refId>
+   <video>v20080530_183000_bbcone_bbc_london_news</video>
+   <startTime>12.08</startTime>
+   <endTime>12.10</endTime>
+</anchor>
+
+<anchor>
+   <anchorId>anchor_37</anchorId>
+   <refId>553e4b4542b47e3d4e0b6ea1</refId>
+   <video>v20080530_183000_bbcone_bbc_london_news</video>
+   <startTime>12.36</startTime>
+   <endTime>12.43</endTime>
+</anchor>
+
+<anchor>
+   <anchorId>anchor_38</anchorId>
+   <refId>553e4b4542b47e3d4e0b6ea1</refId>
+   <video>v20080530_183000_bbcone_bbc_london_news</video>
+   <startTime>12.46</startTime>
+   <endTime>12.48</endTime>
+</anchor>
+
+<anchor>
+   <anchorId>anchor_39</anchorId>
+   <refId>553e4b4542b47e3d4e0b6ea1</refId>
+   <video>v20080530_183000_bbcone_bbc_london_news</video>
+   <startTime>13.01</startTime>
+   <endTime>13.02</endTime>
+</anchor>
+
+<anchor>
+   <anchorId>anchor_40</anchorId>
+   <refId>5541322342b47e3d4f7e55e3</refId>
+   <video>v20080730_203000_bbctwo_francescos_mediterranean_voyage</video>
+   <startTime>12.07</startTime>
+   <endTime>12.22</endTime>
+</anchor>
+
+<anchor>
+   <anchorId>anchor_41</anchorId>
+   <refId>5541322342b47e3d4f7e55e3</refId>
+   <video>v20080730_203000_bbctwo_francescos_mediterranean_voyage</video>
+   <startTime>660.00</startTime>
+   <endTime>780.00</endTime>
+</anchor>
+
+<anchor>
+   <anchorId>anchor_42</anchorId>
+   <refId>5541322342b47e3d4f7e55e3</refId>
+   <video>v20080716_163500_bbcone_serious_ocean</video>
+   <startTime>9.50</startTime>
+   <endTime>10.00</endTime>
+</anchor>
+
+<anchor>
+   <anchorId>anchor_43</anchorId>
+   <refId>5541322342b47e3d4f7e55e3</refId>
+   <video>v20080716_163500_bbcone_serious_ocean</video>
+   <startTime>10.45</startTime>
+   <endTime>11.10</endTime>
+</anchor>
+
+<anchor>
+   <anchorId>anchor_44</anchorId>
+   <refId>55413a2242b47e3d4e0b6ea2</refId>
+   <video>v20080714_203000_bbctwo_chinese_food_made_easy</video>
+   <startTime>1.44</startTime>
+   <endTime>2.05</endTime>
+</anchor>
+
+<anchor>
+   <anchorId>anchor_45</anchorId>
+   <refId>5561c1cf42b47e11ac5fb7ab</refId>
+   <video>v20080529_183000_bbcone_bbc_london_news</video>
+   <startTime>5.35</startTime>
+   <endTime>5.36</endTime>
+</anchor>
+
+<anchor>
+   <anchorId>anchor_46</anchorId>
+   <refId>5561c1cf42b47e11ac5fb7ab</refId>
+   <video>v20080529_183000_bbcone_bbc_london_news</video>
+   <startTime>7.08</startTime>
+   <endTime>7.12</endTime>
+</anchor>
+
+<anchor>
+   <anchorId>anchor_47</anchorId>
+   <refId>5561c1cf42b47e11ac5fb7ab</refId>
+   <video>v20080529_183000_bbcone_bbc_london_news</video>
+   <startTime>7.30</startTime>
+   <endTime>7.34</endTime>
+</anchor>
+
+<anchor>
+   <anchorId>anchor_48</anchorId>
+   <refId>5561c1cf42b47e11ac5fb7ab</refId>
+   <video>v20080529_183000_bbcone_bbc_london_news</video>
+   <startTime>7.30</startTime>
+   <endTime>7.36</endTime>
+</anchor>
+
+<anchor>
+   <anchorId>anchor_49</anchorId>
+   <refId>5561c1cf42b47e11ac5fb7ab</refId>
+   <video>v20080529_183000_bbcone_bbc_london_news</video>
+   <startTime>8.01</startTime>
+   <endTime>8.05</endTime>
+</anchor>
+
+<anchor>
+   <anchorId>anchor_50</anchorId>
+   <refId>5561caf642b47e11ab067d83</refId>
+   <video>v20080616_154500_bbctwo_flog_it</video>
+   <startTime>1.54</startTime>
+   <endTime>1.56</endTime>
+</anchor>
+
+<anchor>
+   <anchorId>anchor_51</anchorId>
+   <refId>5561caf642b47e11ab067d83</refId>
+   <video>v20080616_154500_bbctwo_flog_it</video>
+   <startTime>2.00</startTime>
+   <endTime>2.03</endTime>
+</anchor>
+
+<anchor>
+   <anchorId>anchor_52</anchorId>
+   <refId>5561caf642b47e11ab067d83</refId>
+   <video>v20080616_154500_bbctwo_flog_it</video>
+   <startTime>2.03</startTime>
+   <endTime>2.11</endTime>
+</anchor>
+
+<anchor>
+   <anchorId>anchor_53</anchorId>
+   <refId>5561caf642b47e11ab067d83</refId>
+   <video>v20080512_015500_bbcfour_christina_a_medieval_life</video>
+   <startTime>24.42</startTime>
+   <endTime>25.07</endTime>
+</anchor>
+
+<anchor>
+   <anchorId>anchor_54</anchorId>
+   <refId>5561caf642b47e11ab067d83</refId>
+   <video>v20080512_015500_bbcfour_christina_a_medieval_life</video>
+   <startTime>25.23</startTime>
+   <endTime>25.25</endTime>
+</anchor>
+
+<anchor>
+   <anchorId>anchor_55</anchorId>
+   <refId>5561caf642b47e11ab067d83</refId>
+   <video>v20080512_015500_bbcfour_christina_a_medieval_life</video>
+   <startTime>25.30</startTime>
+   <endTime>25.32</endTime>
+</anchor>
+
+<anchor>
+   <anchorId>anchor_56</anchorId>
+   <refId>5561d07542b47e11ac5fb7b0</refId>
+   <video>v20080517_173000_bbctwo_dad_s_army</video>
+   <startTime>10.20</startTime>
+   <endTime>10.24</endTime>
+</anchor>
+
+<anchor>
+   <anchorId>anchor_57</anchorId>
+   <refId>5561d07542b47e11ac5fb7b0</refId>
+   <video>v20080531_203000_bbcthree_top_gear</video>
+   <startTime>1.50</startTime>
+   <endTime>1.57</endTime>
+</anchor>
+
+<anchor>
+   <anchorId>anchor_58</anchorId>
+   <refId>5561d07542b47e11ac5fb7b0</refId>
+   <video>v20080531_203000_bbcthree_top_gear</video>
+   <startTime>3.25</startTime>
+   <endTime>3.30</endTime>
+</anchor>
+
+<anchor>
+   <anchorId>anchor_59</anchorId>
+   <refId>5561d07542b47e11ac5fb7b0</refId>
+   <video>v20080531_203000_bbcthree_top_gear</video>
+   <startTime>4.02</startTime>
+   <endTime>4.10</endTime>
+</anchor>
+
+<anchor>
+   <anchorId>anchor_60</anchorId>
+   <refId>5561d07542b47e11ac5fb7b0</refId>
+   <video>v20080531_203000_bbcthree_top_gear</video>
+   <startTime>4.31</startTime>
+   <endTime>4.36</endTime>
+</anchor>
+
+<anchor>
+   <anchorId>anchor_61</anchorId>
+   <refId>5561d07542b47e11ac5fb7b0</refId>
+   <video>v20080531_203000_bbcthree_top_gear</video>
+   <startTime>4.48</startTime>
+   <endTime>4.54</endTime>
+</anchor>
+
+<anchor>
+   <anchorId>anchor_62</anchorId>
+   <refId>5561d07542b47e11ac5fb7b0</refId>
+   <video>v20080531_203000_bbcthree_top_gear</video>
+   <startTime>6.34</startTime>
+   <endTime>6.36</endTime>
+</anchor>
+
+<anchor>
+   <anchorId>anchor_63</anchorId>
+   <refId>5561d07542b47e11ac5fb7b0</refId>
+   <video>v20080715_143000_bbctwo_castle_in_the_country</video>
+   <startTime>24.05</startTime>
+   <endTime>28.21</endTime>
+</anchor>
+
+<anchor>
+   <anchorId>anchor_64</anchorId>
+   <refId>5561d07542b47e11ac5fb7b0</refId>
+   <video>v20080715_143000_bbctwo_castle_in_the_country</video>
+   <startTime>25.35</startTime>
+   <endTime>25.41</endTime>
+</anchor>
+
+<anchor>
+   <anchorId>anchor_65</anchorId>
+   <refId>5561d07542b47e11ac5fb7b0</refId>
+   <video>v20080715_143000_bbctwo_castle_in_the_country</video>
+   <startTime>26.39</startTime>
+   <endTime>26.45</endTime>
+</anchor>
+
+<anchor>
+   <anchorId>anchor_66</anchorId>
+   <refId>5561d07542b47e11ac5fb7b0</refId>
+   <video>v20080715_143000_bbctwo_castle_in_the_country</video>
+   <startTime>27.23</startTime>
+   <endTime>27.30</endTime>
+</anchor>
+
+<anchor>
+   <anchorId>anchor_67</anchorId>
+   <refId>55646ac942b47e11ab067d8a</refId>
+   <video>v20080609_190000_bbcfour_world_news_today</video>
+   <startTime>21.22</startTime>
+   <endTime>22.54</endTime>
+</anchor>
+
+<anchor>
+   <anchorId>anchor_68</anchorId>
+   <refId>55646ac942b47e11ab067d8a</refId>
+   <video>v20080609_190000_bbcfour_world_news_today</video>
+   <startTime>21.22</startTime>
+   <endTime>22.54</endTime>
+</anchor>
+
+<anchor>
+   <anchorId>anchor_69</anchorId>
+   <refId>55646f0e42b47e11ab067d8d</refId>
+   <video>v20080713_110000_bbcone_countryfile</video>
+   <startTime>29.25</startTime>
+   <endTime>30.25</endTime>
+</anchor>
+
+<anchor>
+   <anchorId>anchor_70</anchorId>
+   <refId>55646f0e42b47e11ab067d8d</refId>
+   <video>v20080713_110000_bbcone_countryfile</video>
+   <startTime>29.42</startTime>
+   <endTime>30.25</endTime>
+</anchor>
+
+<anchor>
+   <anchorId>anchor_71</anchorId>
+   <refId>55646fb942b47e11ac5fb7bc</refId>
+   <video>v20080523_190000_bbctwo_wainwright_walks</video>
+   <startTime>19.32</startTime>
+   <endTime>23.24</endTime>
+</anchor>
+
+<anchor>
+   <anchorId>anchor_72</anchorId>
+   <refId>55646fb942b47e11ac5fb7bc</refId>
+   <video>v20080523_190000_bbctwo_wainwright_walks</video>
+   <startTime>21.18</startTime>
+   <endTime>23.24</endTime>
+</anchor>
+
+<anchor>
+   <anchorId>anchor_73</anchorId>
+   <refId>55646fb942b47e11ac5fb7bc</refId>
+   <video>v20080514_195000_bbctwo_strictly_black_grouse</video>
+   <startTime>0.43</startTime>
+   <endTime>4.45</endTime>
+</anchor>
+
+<anchor>
+   <anchorId>anchor_74</anchorId>
+   <refId>55646fb942b47e11ac5fb7bc</refId>
+   <video>v20080514_195000_bbctwo_strictly_black_grouse</video>
+   <startTime>1.42</startTime>
+   <endTime>4.45</endTime>
+</anchor>
+
+<anchor>
+   <anchorId>anchor_75</anchorId>
+   <refId>55646fb942b47e11ac5fb7bc</refId>
+   <video>v20080518_153000_bbcone_songs_of_praise</video>
+   <startTime>4.09</startTime>
+   <endTime>5.50</endTime>
+</anchor>
+
+<anchor>
+   <anchorId>anchor_76</anchorId>
+   <refId>55646fb942b47e11ac5fb7bc</refId>
+   <video>v20080518_153000_bbcone_songs_of_praise</video>
+   <startTime>4.09</startTime>
+   <endTime>5.50</endTime>
+</anchor>
+
+<anchor>
+   <anchorId>anchor_77</anchorId>
+   <refId>5564701542b47e11ab067d8f</refId>
+   <video>v20080603_190000_bbcfour_world_news_today</video>
+   <startTime>6.35</startTime>
+   <endTime>7.00</endTime>
+</anchor>
+
+<anchor>
+   <anchorId>anchor_78</anchorId>
+   <refId>5564701542b47e11ab067d8f</refId>
+   <video>v20080603_190000_bbcfour_world_news_today</video>
+   <startTime>7.26</startTime>
+   <endTime>7.54</endTime>
+</anchor>
+
+<anchor>
+   <anchorId>anchor_79</anchorId>
+   <refId>5564701542b47e11ab067d8f</refId>
+   <video>v20080603_190000_bbcfour_world_news_today</video>
+   <startTime>7.54</startTime>
+   <endTime>8.10</endTime>
+</anchor>
+
+<anchor>
+   <anchorId>anchor_80</anchorId>
+   <refId>5564701542b47e11ab067d8f</refId>
+   <video>v20080603_190000_bbcfour_world_news_today</video>
+   <startTime>8.10</startTime>
+   <endTime>8.40</endTime>
+</anchor>
+
+<anchor>
+   <anchorId>anchor_81</anchorId>
+   <refId>5564701542b47e11ab067d8f</refId>
+   <video>v20080603_190000_bbcfour_world_news_today</video>
+   <startTime>8.40</startTime>
+   <endTime>9.19</endTime>
+</anchor>
+
+<anchor>
+   <anchorId>anchor_82</anchorId>
+   <refId>5564701542b47e11ab067d8f</refId>
+   <video>v20080620_190000_bbcfour_world_news_today</video>
+   <startTime>14.45</startTime>
+   <endTime>14.55</endTime>
+</anchor>
+
+<anchor>
+   <anchorId>anchor_83</anchorId>
+   <refId>5564701542b47e11ab067d8f</refId>
+   <video>v20080620_190000_bbcfour_world_news_today</video>
+   <startTime>14.55</startTime>
+   <endTime>15.11</endTime>
+</anchor>
+
+<anchor>
+   <anchorId>anchor_84</anchorId>
+   <refId>5564701542b47e11ab067d8f</refId>
+   <video>v20080620_190000_bbcfour_world_news_today</video>
+   <startTime>15.11</startTime>
+   <endTime>15.24</endTime>
+</anchor>
+
+<anchor>
+   <anchorId>anchor_85</anchorId>
+   <refId>5564701542b47e11ab067d8f</refId>
+   <video>v20080620_190000_bbcfour_world_news_today</video>
+   <startTime>15.45</startTime>
+   <endTime>15.54</endTime>
+</anchor>
+
+<anchor>
+   <anchorId>anchor_86</anchorId>
+   <refId>5564701542b47e11ab067d8f</refId>
+   <video>v20080624_190000_bbcfour_world_news_today</video>
+   <startTime>20.40</startTime>
+   <endTime>21.04</endTime>
+</anchor>
+
+<anchor>
+   <anchorId>anchor_87</anchorId>
+   <refId>5564701542b47e11ab067d8f</refId>
+   <video>v20080624_190000_bbcfour_world_news_today</video>
+   <startTime>22.48</startTime>
+   <endTime>23.01</endTime>
+</anchor>
+
+<anchor>
+   <anchorId>anchor_88</anchorId>
+   <refId>5564701542b47e11ab067d8f</refId>
+   <video>v20080624_190000_bbcfour_world_news_today</video>
+   <startTime>23.15</startTime>
+   <endTime>23.33</endTime>
+</anchor>
+
+<anchor>
+   <anchorId>anchor_89</anchorId>
+   <refId>5564701542b47e11ab067d8f</refId>
+   <video>v20080624_190000_bbcfour_world_news_today</video>
+   <startTime>23.33</startTime>
+   <endTime>23.50</endTime>
+</anchor>
+
+<anchor>
+   <anchorId>anchor_90</anchorId>
+   <refId>5565cedc42b47e11ac5fb7da</refId>
+   <video>v20080709_143000_bbctwo_castle_in_the_country</video>
+   <startTime>10.40</startTime>
+   <endTime>10.42</endTime>
+</anchor>
+
+<anchor>
+   <anchorId>anchor_91</anchorId>
+   <refId>5565cedc42b47e11ac5fb7da</refId>
+   <video>v20080709_143000_bbctwo_castle_in_the_country</video>
+   <startTime>10.37</startTime>
+   <endTime>10.42</endTime>
+</anchor>
+
+<anchor>
+   <anchorId>anchor_92</anchorId>
+   <refId>5565cedc42b47e11ac5fb7da</refId>
+   <video>v20080709_143000_bbctwo_castle_in_the_country</video>
+   <startTime>10.34</startTime>
+   <endTime>10.40</endTime>
+</anchor>
+
+<anchor>
+   <anchorId>anchor_93</anchorId>
+   <refId>5565cedc42b47e11ac5fb7da</refId>
+   <video>v20080605_180000_bbcone_bbc_news_at_six</video>
+   <startTime>13.03</startTime>
+   <endTime>13.05</endTime>
+</anchor>
+
+<anchor>
+   <anchorId>anchor_94</anchorId>
+   <refId>5565cedc42b47e11ac5fb7da</refId>
+   <video>v20080605_180000_bbcone_bbc_news_at_six</video>
+   <startTime>14.37</startTime>
+   <endTime>14.43</endTime>
+</anchor>
+
+<anchor>
+   <anchorId>anchor_95</anchorId>
+   <refId>5565cedc42b47e11ac5fb7da</refId>
+   <video>v20080605_180000_bbcone_bbc_news_at_six</video>
+   <startTime>15.12</startTime>
+   <endTime>15.15</endTime>
+</anchor>
+
+<anchor>
+   <anchorId>anchor_96</anchorId>
+   <refId>5565cedc42b47e11ac5fb7da</refId>
+   <video>v20080524_200000_bbctwo_andrew_marrs_history_of</video>
+   <startTime>3.00</startTime>
+   <endTime>3.15</endTime>
+</anchor>
+
+<anchor>
+   <anchorId>anchor_97</anchorId>
+   <refId>5565d5ab42b47e512f8bc61c</refId>
+   <video>v20080721_183000_bbctwo_animal_park</video>
+   <startTime>17.15</startTime>
+   <endTime>17.54</endTime>
+</anchor>
+
+<anchor>
+   <anchorId>anchor_98</anchorId>
+   <refId>5565d5ab42b47e512f8bc61c</refId>
+   <video>v20080721_183000_bbctwo_animal_park</video>
+   <startTime>17.54</startTime>
+   <endTime>18.34</endTime>
+</anchor>
+
+<anchor>
+   <anchorId>anchor_99</anchorId>
+   <refId>5565d5ab42b47e512f8bc61c</refId>
+   <video>v20080721_183000_bbctwo_animal_park</video>
+   <startTime>19.21</startTime>
+   <endTime>19.27</endTime>
+</anchor>
+
+<anchor>
+   <anchorId>anchor_100</anchorId>
+   <refId>5565d99c42b47e11ac5fb7dd</refId>
+   <video>v20080630_060000_bbcone_breakfast</video>
+   <startTime>151.14</startTime>
+   <endTime>151.29</endTime>
+</anchor>
+
+<anchor>
+   <anchorId>anchor_101</anchorId>
+   <refId>5565d99c42b47e11ac5fb7dd</refId>
+   <video>v20080702_060000_bbcone_breakfast</video>
+   <startTime>82.39</startTime>
+   <endTime>83.20</endTime>
+</anchor>
+
+<anchor>
+   <anchorId>anchor_102</anchorId>
+   <refId>5565e04042b47e11ac5fb7de</refId>
+   <video>v20080618_180000_bbcone_bbc_news_at_six</video>
+   <startTime>10.09</startTime>
+   <endTime>10.35</endTime>
+</anchor>
+
+<anchor>
+   <anchorId>anchor_103</anchorId>
+   <refId>5565e04042b47e11ac5fb7de</refId>
+   <video>v20080618_180000_bbcone_bbc_news_at_six</video>
+   <startTime>0.00</startTime>
+   <endTime>10.35</endTime>
+</anchor>
+
+<anchor>
+   <anchorId>anchor_104</anchorId>
+   <refId>5566dd5d42b47e11ac5fb7e3</refId>
+   <video>v20080720_214500_bbctwo_moto_gp</video>
+   <startTime>49.36</startTime>
+   <endTime>50.01</endTime>
+</anchor>
+
+<anchor>
+   <anchorId>anchor_105</anchorId>
+   <refId>5566dd5d42b47e11ac5fb7e3</refId>
+   <video>v20080720_214500_bbctwo_moto_gp</video>
+   <startTime>50.35</startTime>
+   <endTime>50.46</endTime>
+</anchor>
+
+<anchor>
+   <anchorId>anchor_106</anchorId>
+   <refId>5566e7d342b47e512f8bc624</refId>
+   <video>v20080617_111000_bbctwo_timewatch</video>
+   <startTime>4.07</startTime>
+   <endTime>4.19</endTime>
+</anchor>
+
+<anchor>
+   <anchorId>anchor_107</anchorId>
+   <refId>5566f7b542b47e11ac5fb7e5</refId>
+   <video>v20080512_120000_bbcone_bbc_news_at_one</video>
+   <startTime>3.25</startTime>
+   <endTime>3.27</endTime>
+</anchor>
+
+<anchor>
+   <anchorId>anchor_108</anchorId>
+   <refId>5566f7b542b47e11ac5fb7e5</refId>
+   <video>v20080512_050000_bbcone_breakfast</video>
+   <startTime>127.09</startTime>
+   <endTime>127.27</endTime>
+</anchor>
+
+<anchor>
+   <anchorId>anchor_109</anchorId>
+   <refId>5566f7b542b47e11ac5fb7e5</refId>
+   <video>v20080512_050000_bbcone_breakfast</video>
+   <startTime>152.08</startTime>
+   <endTime>152.19</endTime>
+</anchor>
+
+<anchor>
+   <anchorId>anchor_110</anchorId>
+   <refId>5566f7b542b47e11ac5fb7e5</refId>
+   <video>v20080525_120000_bbcone_bbc_news</video>
+   <startTime>0.45</startTime>
+   <endTime>0.51</endTime>
+</anchor>
+
+<anchor>
+   <anchorId>anchor_111</anchorId>
+   <refId>5566f7b542b47e11ac5fb7e5</refId>
+   <video>v20080525_120000_bbcone_bbc_news</video>
+   <startTime>0.45</startTime>
+   <endTime>0.51</endTime>
+</anchor>
+
+<anchor>
+   <anchorId>anchor_112</anchorId>
+   <refId>5566f7b542b47e11ac5fb7e5</refId>
+   <video>v20080512_050000_bbcone_breakfast</video>
+   <startTime>104.41</startTime>
+   <endTime>105.33</endTime>
+</anchor>
+
+<anchor>
+   <anchorId>anchor_113</anchorId>
+   <refId>5566f7b542b47e11ac5fb7e5</refId>
+   <video>v20080519_170000_bbcone_bbc_news_at_six</video>
+   <startTime>7.52</startTime>
+   <endTime>8.03</endTime>
+</anchor>
+
+<anchor>
+   <anchorId>anchor_114</anchorId>
+   <refId>556726fc42b47e512f8bc627</refId>
+   <video>v20080613_210000_bbcfour_quincy_jones_the_many</video>
+   <startTime>1.18</startTime>
+   <endTime>1.20</endTime>
+</anchor>
+
+<anchor>
+   <anchorId>anchor_115</anchorId>
+   <refId>55672e9d4331696359dec5c1</refId>
+   <video>v20080531_203000_bbcthree_top_gear</video>
+   <startTime>50.31</startTime>
+   <endTime>50.44</endTime>
+</anchor>
+
+<anchor>
+   <anchorId>anchor_116</anchorId>
+   <refId>55672e9d4331696359dec5c1</refId>
+   <video>v20080531_203000_bbcthree_top_gear</video>
+   <startTime>50.38</startTime>
+   <endTime>50.41</endTime>
+</anchor>
+
+<anchor>
+   <anchorId>anchor_117</anchorId>
+   <refId>55672e9d4331696359dec5c1</refId>
+   <video>v20080709_200000_bbcone_celebrity_masterchef</video>
+   <startTime>36.15</startTime>
+   <endTime>36.30</endTime>
+</anchor>
+
+<anchor>
+   <anchorId>anchor_118</anchorId>
+   <refId>556743d14331697f6592be39</refId>
+   <video>v20080601_210000_bbctwo_wild_china</video>
+   <startTime>2.17</startTime>
+   <endTime>2.25</endTime>
+</anchor>
+
+<anchor>
+   <anchorId>anchor_119</anchorId>
+   <refId>556790844331692084a07ce1</refId>
+   <video>v20080704_190000_bbcthree_top_gear</video>
+   <startTime>51.39</startTime>
+   <endTime>54.24</endTime>
+</anchor>
+
+<anchor>
+   <anchorId>anchor_120</anchorId>
+   <refId>5568324e4331692836f32687</refId>
+   <video>v20080517_193000_bbcthree_top_gear</video>
+   <startTime>23.17</startTime>
+   <endTime>24.17</endTime>
+</anchor>
+
+<anchor>
+   <anchorId>anchor_121</anchorId>
+   <refId>5568324e4331692836f32687</refId>
+   <video>v20080613_190000_bbcthree_top_gear</video>
+   <startTime>56.12</startTime>
+   <endTime>58.34</endTime>
+</anchor>
+
+<anchor>
+   <anchorId>anchor_122</anchorId>
+   <refId>5568324e4331692836f32687</refId>
+   <video>v20080622_200000_bbctwo_top_gear</video>
+   <startTime>22.33</startTime>
+   <endTime>23.31</endTime>
+</anchor>
+
+<anchor>
+   <anchorId>anchor_123</anchorId>
+   <refId>5568324e4331692836f32687</refId>
+   <video>v20080614_204000_bbcthree_top_gear</video>
+   <startTime>21.21</startTime>
+   <endTime>22.30</endTime>
+</anchor>
+
+<anchor>
+   <anchorId>anchor_124</anchorId>
+   <refId>5568324e4331692836f32687</refId>
+   <video>v20080704_190000_bbcthree_top_gear</video>
+   <startTime>29.18</startTime>
+   <endTime>30.24</endTime>
+</anchor>
+
+<anchor>
+   <anchorId>anchor_125</anchorId>
+   <refId>556ac72c4331695f5170bf49</refId>
+   <video>v20080525_060000_bbcone_breakfast</video>
+   <startTime>1.01</startTime>
+   <endTime>4.26</endTime>
+</anchor>
+
+<anchor>
+   <anchorId>anchor_126</anchorId>
+   <refId>556ac72c4331695f5170bf49</refId>
+   <video>v20080619_223000_bbctwo_newsnight</video>
+   <startTime>19.12</startTime>
+   <endTime>36.57</endTime>
+</anchor>
+
+<anchor>
+   <anchorId>anchor_127</anchorId>
+   <refId>556ac72c4331695f5170bf49</refId>
+   <video>v20080512_180000_bbcfour_world_news_today</video>
+   <startTime>6.39</startTime>
+   <endTime>12.48</endTime>
+</anchor>
+
+<anchor>
+   <anchorId>anchor_128</anchorId>
+   <refId>556ac72c4331695f5170bf49</refId>
+   <video>v20080516_210000_bbcone_bbc_news_at_ten</video>
+   <startTime>18.20</startTime>
+   <endTime>20.30</endTime>
+</anchor>
+
+<anchor>
+   <anchorId>anchor_129</anchorId>
+   <refId>556ac72c4331695f5170bf49</refId>
+   <video>v20080523_180000_bbcone_bbc_news_at_six</video>
+   <startTime>20.47</startTime>
+   <endTime>23.01</endTime>
+</anchor>
+
+<anchor>
+   <anchorId>anchor_130</anchorId>
+   <refId>556ac72c4331695f5170bf49</refId>
+   <video>v20080523_190000_bbcfour_world_news_today</video>
+   <startTime>1.33</startTime>
+   <endTime>8.26</endTime>
+</anchor>
+
+<anchor>
+   <anchorId>anchor_131</anchorId>
+   <refId>556ac72c4331695f5170bf49</refId>
+   <video>v20080525_060000_bbcone_breakfast</video>
+   <startTime>122.04</startTime>
+   <endTime>124.45</endTime>
+</anchor>
+
+<anchor>
+   <anchorId>anchor_132</anchorId>
+   <refId>556ac72c4331695f5170bf49</refId>
+   <video>v20080525_182000_bbcone_bbc_news</video>
+   <startTime>9.39</startTime>
+   <endTime>11.48</endTime>
+</anchor>
+
+<anchor>
+   <anchorId>anchor_133</anchorId>
+   <refId>556ac72c4331695f5170bf49</refId>
+   <video>v20080603_180000_bbcone_bbc_news_at_six</video>
+   <startTime>17.13</startTime>
+   <endTime>19.32</endTime>
+</anchor>
+
+<anchor>
+   <anchorId>anchor_134</anchorId>
+   <refId>556ac72c4331695f5170bf49</refId>
+   <video>v20080618_223000_bbctwo_newsnight</video>
+   <startTime>31.07</startTime>
+   <endTime>46.53</endTime>
+</anchor>
+
+<anchor>
+   <anchorId>anchor_135</anchorId>
+   <refId>556c2a7e4331694934a4334d</refId>
+   <video>v20080727_180500_bbcone_songs_of_praise</video>
+   <startTime>0.41</startTime>
+   <endTime>1.03</endTime>
+</anchor>
+
+</anchors>

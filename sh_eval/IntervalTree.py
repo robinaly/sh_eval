@@ -24,8 +24,7 @@ class IntervalTree:
 				s_center.append(k)
  
 		return Node(x_center, s_center, self.divide_intervals(s_left), self.divide_intervals(s_right))
-		
- 
+	
 	def center(self, intervals):
 		fs = sort_by_begin(intervals)
 		length = len(fs)
@@ -43,10 +42,11 @@ class IntervalTree:
 			return sort_by_begin(result)
 		else:
 			return [] if self.top_node == None else self._search(self.top_node, begin, [])
+      
 	def _search(self, node, point, result):
 		
 		for k in node.s_center:
-			if k.get_begin() <= point <= k.get_end():
+			if k.get_begin() <= point < k.get_end():
 				result.append(k)
 		if point < node.x_center and node.left_node:
 			for k in self._search(node.left_node, point, []):
@@ -128,7 +128,9 @@ class IT(object):
     return '\n'.join([str(s) for s in self.data])
 
 if __name__ == "__main__": 
-
+  '''
+  Test segments
+  '''
   relevants = [
     Segment(('A', 25, 30)),
     Segment(('B', 1, 20)),

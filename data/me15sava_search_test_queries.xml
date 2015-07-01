@@ -1,0 +1,153 @@
+<?xml version="1.0" ?>
+<topics>
+  <top>
+    <itemId>item_10</itemId>
+    <queryText>underground construction</queryText>
+    <visualCues>underground, metro, subway, london</visualCues>
+  </top>
+  <top>
+    <itemId>item_11</itemId>
+    <queryText>international documentary nationality travel</queryText>
+    <visualCues>scenery, food, people</visualCues>
+  </top>
+  <top>
+    <itemId>item_13</itemId>
+    <queryText>jaipur terrorist</queryText>
+    <visualCues>explosion</visualCues>
+  </top>
+  <top>
+    <itemId>item_14</itemId>
+    <queryText>gardening</queryText>
+    <visualCues>tree, flowers, lawn, outdoor</visualCues>
+  </top>
+  <top>
+    <itemId>item_15</itemId>
+    <queryText>murder police crime scene statistics london</queryText>
+    <visualCues>police, crime scene</visualCues>
+  </top>
+  <top>
+    <itemId>item_16</itemId>
+    <queryText>whiskey scotland islands taste quality</queryText>
+    <visualCues>whiskey</visualCues>
+  </top>
+  <top>
+    <itemId>item_17</itemId>
+    <queryText>rollsroyce quality history</queryText>
+    <visualCues>rolls-royce</visualCues>
+  </top>
+  <top>
+    <itemId>item_18</itemId>
+    <queryText>whales extinction</queryText>
+    <visualCues>whale</visualCues>
+  </top>
+  <top>
+    <itemId>item_19</itemId>
+    <queryText>eu brussels meeting</queryText>
+    <visualCues>brussels</visualCues>
+  </top>
+  <top>
+    <itemId>item_20</itemId>
+    <queryText>hill walking public footpaths</queryText>
+    <visualCues>public footpaths, hill, walking</visualCues>
+  </top>
+  <top>
+    <itemId>item_21</itemId>
+    <queryText>history palace tudor</queryText>
+    <visualCues>palaces, houses</visualCues>
+  </top>
+  <top>
+    <itemId>item_22</itemId>
+    <queryText>national parks</queryText>
+    <visualCues>national parks, hill, walking</visualCues>
+  </top>
+  <top>
+    <itemId>item_23</itemId>
+    <queryText>hunger world problem</queryText>
+    <visualCues>hungry people, slim bodies</visualCues>
+  </top>
+  <top>
+    <itemId>item_24</itemId>
+    <queryText>squirrels</queryText>
+    <visualCues>squirrel</visualCues>
+  </top>
+  <top>
+    <itemId>item_25</itemId>
+    <queryText>british railway classic trains</queryText>
+    <visualCues>train</visualCues>
+  </top>
+  <top>
+    <itemId>item_26</itemId>
+    <queryText>historical railway in the uk</queryText>
+    <visualCues>train, station, locomotive</visualCues>
+  </top>
+  <top>
+    <itemId>item_27</itemId>
+    <queryText>making tv series</queryText>
+    <visualCues>interview, tv series excerpts</visualCues>
+  </top>
+  <top>
+    <itemId>item_28</itemId>
+    <queryText>history of zoo and circus exotic animals</queryText>
+    <visualCues>zoo, circus, animals</visualCues>
+  </top>
+  <top>
+    <itemId>item_29</itemId>
+    <queryText>hospital ambulance</queryText>
+    <visualCues>hospital, ambulance</visualCues>
+  </top>
+  <top>
+    <itemId>item_30</itemId>
+    <queryText>military general soldiers tank airplane jeep</queryText>
+    <visualCues>parade, boots, marching, guns</visualCues>
+  </top>
+  <top>
+    <itemId>item_31</itemId>
+    <queryText>horse racing</queryText>
+    <visualCues>horse</visualCues>
+  </top>
+  <top>
+    <itemId>item_32</itemId>
+    <queryText>casey stoner versus valentino rossi motorcycle race</queryText>
+    <visualCues>motorcycle, motorcyclist, race, track, road</visualCues>
+  </top>
+  <top>
+    <itemId>item_33</itemId>
+    <queryText>king james england gunpowder plot reasons</queryText>
+    <visualCues>king, house of parliament, house of lords</visualCues>
+  </top>
+  <top>
+    <itemId>item_34</itemId>
+    <queryText>78 magnitude earthquake in the south of china</queryText>
+    <visualCues>building, city</visualCues>
+  </top>
+  <top>
+    <itemId>item_35</itemId>
+    <queryText>michael jackson quincy jones</queryText>
+    <visualCues>singer, dancing, michael jackson</visualCues>
+  </top>
+  <top>
+    <itemId>item_38</itemId>
+    <queryText>china historical facts</queryText>
+    <visualCues></visualCues>
+  </top>
+  <top>
+    <itemId>item_39</itemId>
+    <queryText>police car in top gear</queryText>
+    <visualCues>car</visualCues>
+  </top>
+  <top>
+    <itemId>item_40</itemId>
+    <queryText>stig</queryText>
+    <visualCues>the stig, white helmet</visualCues>
+  </top>
+  <top>
+    <itemId>item_41</itemId>
+    <queryText>burmese rangoon cyclone</queryText>
+    <visualCues>cyclone</visualCues>
+  </top>
+  <top>
+    <itemId>item_42</itemId>
+    <queryText>nuns monks gardening spiritual life abbot daily prayer</queryText>
+    <visualCues>church, monastery, monk, habit, nun</visualCues>
+  </top>
+</topics>
