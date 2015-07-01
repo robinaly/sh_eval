@@ -12,6 +12,7 @@ from collections import defaultdict
 from bisect import *
 from toleranceToIrrelevance import *
 from binnedRelevance import *
+from maisp import MAiSPCalculator
 from optparse import OptionParser
 from IntervalTree import *
 import os
@@ -115,6 +116,7 @@ if __name__ == "__main__":
   parser.add_option("-B", "--binSize", dest="binSize", help="Bin Size", metavar="binSize", default=5*60)
   parser.add_option("-t", "--tollerance", dest="tollerance", help="Calculate Binned Statistics", metavar="tollerance", default=True)
   parser.add_option("-T", "--tWindow", dest="tolleranceWindow", help="Tollerance Window", metavar="tolleranceWindow", default=15)
+  parser.add_option("-m", "--maisp", dest="maisp", help="Calculate MAiSP", metavar="maisp", default=True)
 
   (opt, args) = parser.parse_args()  
   
@@ -136,7 +138,11 @@ if __name__ == "__main__":
   if opt.tollerance:
     measures.extend(
       [ NumRel("tol"), NumRet("tol"), NumRelRet("tol"), Ap("tol"), PrecisionAt(5,"tol"), PrecisionAt(10,"tol"), PrecisionAt(20,"tol"), JudgedAt(10,"tol"), JudgedAt(20,"tol"), JudgedAt(30,"tol"), RelJudge("tol"), ]
-    )  
+    )
+
+  # if we are calculating MAiSP
+  if opt.maisp:
+    measures.extend( [MAiSPRel(), MAiSPRet(), MAiSPRelRet(), MAiSPiAsp()] )
   
   # command line arguments  
   qrel = args[0]
@@ -189,8 +195,8 @@ if __name__ == "__main__":
     trec = map(formatTrecSearch, do_open(trec))
   trec.sort(key=lambda rec: (rec['anchorId'], rec['rank']))
   values = []
-  
-  # Group ranking by anchor id
+
+    # Group ranking by anchor id
   for anchorId, recs in itertools.groupby(trec, key=lambda rec: rec['anchorId']):
     trecs = list(recs)
   
@@ -230,17 +236,23 @@ if __name__ == "__main__":
       target = trec['target']
       relevanceStatiTol.append(getRelevanceTol(relTree, nonRelTree, seenTree, target, TOLERANCE))
     numrelTol = numrel
-  
+ 
+    #
+    # Create a MAiSP calculator for each query
+    #
+    maisp_calc = MAiSPCalculator(qrels)
+    maisp_calc.calc(trecs)
+
     #
     # Binned relevance judgments
     #  
     trecsBin = makeBinList(map(lambda x: x['target'], trecs), BIN_SIZE)
     qrelsBin = makeBinDict(rawRels[anchorId], BIN_SIZE)
     qnonrelsBin = makeBinDict(rawNonRels[anchorId], BIN_SIZE)
-      
+
     numrelBin = sum([ len(v) for v in qrelsBin.values()])
     relevanceStatiBin = map(lambda target: getRelevanceExact(qrelsBin, qnonrelsBin, target), trecsBin)
-      
+
     # calculate all measurs and append them to the list vals
     vals = []
     for m in measures:
@@ -250,6 +262,8 @@ if __name__ == "__main__":
         v = m.calc(relevanceStatiBin, nrel=numrelBin)
       elif m.relType() == "tol":
         v = m.calc(relevanceStatiTol, nrel=numrelTol)
+      elif m.relType() == "maisp":
+        v = m.calc(maisp_calc)
       elif m.relType() == "ranking":
         v = m.calc(trecs)
       elif m.relType() == "qrel":
