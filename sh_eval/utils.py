@@ -175,10 +175,71 @@ class JudgedAt(Measure):
   def calc(self, rels, nrel=None):
     rels = map(lambda x: 0 if x == '-' else 1, rels)
     return sum(rels[:self.n]) / float(self.n)
-    
+
   def agg(self):
     return mean
-    
+
+class MAiSPRelRet(Measure):
+  def __init__(self, relType="maisp"):
+    Measure.__init__(self,relType=relType)
+
+  def name(self):
+    return "num_rel_ret_secs"
+
+  def calc(self, maisp_calc):
+    return maisp_calc.get_rel_ret_secs()
+
+  def format(self):
+    return "%d"
+
+  def agg(self):
+    return sum
+
+class MAiSPRel(Measure):
+  def __init__(self, relType="maisp"):
+    Measure.__init__(self,relType=relType)
+
+  def name(self):
+    return "num_rel_secs"
+
+  def calc(self, maisp_calc):
+    return maisp_calc.get_rel_secs()
+
+  def format(self):
+    return "%d"
+
+  def agg(self):
+    return sum
+
+class MAiSPRet(Measure):
+  def __init__(self, relType="maisp"):
+    Measure.__init__(self,relType=relType)
+
+  def name(self):
+    return "num_ret_secs"
+
+  def calc(self, maisp_calc):
+    return maisp_calc.get_ret_secs()
+
+  def format(self):
+    return "%d"
+
+  def agg(self):
+    return sum
+
+class MAiSPiAsp(Measure):
+  def __init__(self, relType="maisp"):
+    Measure.__init__(self,relType=relType)
+
+  def name(self):
+    return "map"
+
+  def calc(self, maisp_calc):
+    return maisp_calc.get_iAsp()
+
+  def agg(self):
+    return mean
+
 class NumRel(Stat):
   def __init__(self, relType="segment"):
      Stat.__init__(self, relType=relType)
