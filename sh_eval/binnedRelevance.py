@@ -6,6 +6,13 @@ import itertools
 '''
 
 def segment2Bins(target, binSize):
+  '''
+  Transforms a single segment into list of binned segments (according to binSize):
+  For example
+  (1,2,30) with binSize=10
+  results in
+  [(1,0,10), (1,10,20), (1,20,30)]
+  '''
   start_bin = target[1] / binSize
   end_bin = (target[2]-1) / binSize + 1
   res = []
@@ -16,6 +23,13 @@ def segment2Bins(target, binSize):
   return res
 
 def map2bin(ranking, binSize):
+  '''
+  Maps a list of segments into a binned list of segment.
+  For example:
+  [ (1,2,10), (1,35,45) ] with binSize = 10 
+  results in 
+  [ (1,0,10), (1,30,40), (1,40,50) ]
+  '''
   import operator
   def mkBinL(t):
     return segment2Bins(t, binSize)
@@ -52,7 +66,7 @@ def groupIntoVideos(segments):
 def makeBinDict(qrels, binSize):
   '''
   Takes a map from video id to a list of segments.
-  For each segment in this list, it expands the list to
+  For each segment in this list, it bins the list
   '''
   judged = defaultdict(list)
   for video, segments in sorted(qrels.iteritems()):
