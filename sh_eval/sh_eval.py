@@ -142,7 +142,7 @@ if __name__ == "__main__":
 
   # if we are calculating MAiSP
   if opt.maisp:
-    measures.extend( [MAiSPRel(), MAiSPRet(), MAiSPRelRet(), MAiSPiAsp()] )
+    measures.extend( [MAiSP_RelSecs(), MAiSP_RetSecs(), MAiSP_RelRetSecs(), MAiSP_iAsp(), MAiSP_PrecisionAtRecall(recallPt=5), MAiSP_PrecisionAtRecall(recallPt=10), MAiSP_PrecisionAtRecall(recallPt=20)] )
   
   # command line arguments  
   qrel = args[0]
@@ -241,7 +241,7 @@ if __name__ == "__main__":
     #
     maisp_calc = None
     if opt.maisp:
-      maisp_calc = MAiSPCalculator()
+      maisp_calc = MAiSPCalculator(qrels)
       maisp_calc.calc(targets)
 
     #

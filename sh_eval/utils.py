@@ -171,9 +171,9 @@ class Measure:
     
   def format(self):
     return "%.4f"
-    
+
   def fullName(self):
-    if self.relType() != "segment":
+    if self.relType() != "segment" and self.relType() != "maisp":
       return self.name() + '_' + self.relType()
     return self.name()
 
@@ -230,7 +230,7 @@ class JudgedAt(Measure):
   def agg(self):
     return mean
 
-class MAiSPRelRet(Measure):
+class MAiSP_RelRetSecs(Measure):
   def __init__(self, relType="maisp"):
     Measure.__init__(self,relType=relType)
 
@@ -246,7 +246,7 @@ class MAiSPRelRet(Measure):
   def agg(self):
     return sum
 
-class MAiSPRel(Measure):
+class MAiSP_RelSecs(Measure):
   def __init__(self, relType="maisp"):
     Measure.__init__(self,relType=relType)
 
@@ -262,7 +262,7 @@ class MAiSPRel(Measure):
   def agg(self):
     return sum
 
-class MAiSPRet(Measure):
+class MAiSP_RetSecs(Measure):
   def __init__(self, relType="maisp"):
     Measure.__init__(self,relType=relType)
 
@@ -278,12 +278,30 @@ class MAiSPRet(Measure):
   def agg(self):
     return sum
 
-class MAiSPiAsp(Measure):
+class MAiSP_PrecisionAtRecall(Measure):
+  def __init__(self, relType="maisp", recallPt=1):
+    Measure.__init__(self,relType=relType)
+    self.recallPt = max(0, min(recallPt, 100))
+
+  def name(self):
+    return "maisp_%.2f" % (self.recallPt/100.0)
+
+  def calc(self, maisp_calc):
+    isp = maisp_calc.get_isp()
+    if self.recallPt < len(isp):
+      return isp[self.recallPt]
+    else:
+      return 0.0
+
+  def agg(self):
+    return mean
+
+class MAiSP_iAsp(Measure):
   def __init__(self, relType="maisp"):
     Measure.__init__(self,relType=relType)
 
   def name(self):
-    return "map"
+    return "maisp"
 
   def calc(self, maisp_calc):
     return maisp_calc.get_iAsp()
