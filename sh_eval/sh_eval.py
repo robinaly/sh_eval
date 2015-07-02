@@ -193,6 +193,8 @@ if __name__ == "__main__":
     trec = map(formatTrec, do_open(trec))
   else:
     trec = map(formatTrecSearch, do_open(trec))
+  
+  # sort by rank
   trec.sort(key=lambda rec: (rec['anchorId'], rec['rank']))
   values = []
 
@@ -210,18 +212,18 @@ if __name__ == "__main__":
     qjudged = judged[anchorId]
   
     numrel = sum([ len(v) for v in qrels.values()])
-  
+    
+    targets = map(lambda x: x['target'], trecs)
+    
     #
     # Create binary array of relevant / non relevant states for the ranking
     #
-    relevanceStati = []
-    for trec in trecs:
-      target = trec['target']
-      relevanceStati.append(getRelevance(qrels, qnonrels, target))
+    relevanceStati = [getRelevance(qrels, qnonrels, target) for target in targets]
 
     #
     # Tolerance to intollerance measures
     #
+
     def seg2Seg(segDict):
       res = []
       for segments in segDict.values():
@@ -231,22 +233,21 @@ if __name__ == "__main__":
     nonRelTree = IT( seg2Seg(qnonrels) )
     seenTree = IT([])
   
-    relevanceStatiTol = []
-    for trec in trecs:
-      target = trec['target']
-      relevanceStatiTol.append(getRelevanceTol(relTree, nonRelTree, seenTree, target, TOLERANCE))
+    relevanceStatiTol = [ getRelevanceTol(relTree, nonRelTree, seenTree, target, TOLERANCE) for target in targets]
     numrelTol = numrel
  
     #
     # Create a MAiSP calculator for each query
     #
-    maisp_calc = MAiSPCalculator(qrels)
-    maisp_calc.calc(trecs)
+    maisp_calc = None
+    if opt.maisp:
+      maisp_calc = MAiSPCalculator()
+      maisp_calc.calc(targets)
 
     #
     # Binned relevance judgments
     #  
-    trecsBin = makeBinList(map(lambda x: x['target'], trecs), BIN_SIZE)
+    trecsBin = makeBinList(targets, BIN_SIZE)
     qrelsBin = makeBinDict(rawRels[anchorId], BIN_SIZE)
     qnonrelsBin = makeBinDict(rawNonRels[anchorId], BIN_SIZE)
 
