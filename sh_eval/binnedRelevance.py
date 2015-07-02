@@ -22,7 +22,7 @@ def segment2Bins(target, binSize):
     res.append((target[0], start, end))
   return res
 
-def map2bin(ranking, binSize):
+def map2bin(ranking, binSize, sort=True):
   '''
   Maps a list of segments into a binned list of segment.
   For example:
@@ -34,7 +34,9 @@ def map2bin(ranking, binSize):
   def mkBinL(t):
     return segment2Bins(t, binSize)
   ranking = map(mkBinL, ranking)
-  ranking = sorted(reduce(operator.add, ranking))
+  ranking = reduce(operator.add, ranking)
+  if sort:
+    ranking = sorted(ranking)
   for binT, recs in itertools.groupby(ranking):
     recs = list(recs)
     yield binT
@@ -47,7 +49,7 @@ def makeBinList(ranking, binSize):
   res = []
   seen = set()
     
-  for binT in map2bin(ranking, binSize):
+  for binT in map2bin(ranking, binSize,sort=False):
     if not binT in seen:
       seen.add(binT)
       res.append(binT)

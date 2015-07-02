@@ -11,32 +11,35 @@ python ./sh_check/.py <F> ...
 where <F> is either a path to a file or a directory that consists only of run files
 
 Task_Team_RunType_Priority_Segmentation_TranscriptType_AdditionalFeatures_Description[.???], where
-   Task is the identifier for the team (me15sava / or tv15lnk)
-   Team is your team identifier.
-   RunType is one of
-     S: Search run (query = > segments)
-     L: Linking run (segment => segments)
-   Priority is a number (low = high priority) assigned by the participant
-   Segmentation is one combination of
-     Ss: speech sentence segmentation
-     Sp: speech segment segmentation
-     Sh: shot segmentation
-      F: fixed length segmentation
-      L: lexical cohesian segmentation
-      P: use prosodic features for segmentation
-      O: other segmentation
-   TranscriptType is one of
-     I: LIMSI transcripts
-     M: Manual subtitles
-     S: NST/Sheffield
-     U: LIUM transcripts
-     N: No speech information
-   AdditionalFeatures is a combination of
-     M: Metadata
-     V: Visual features
-     O: Other information
-     N: No additional features
-   Description is a very short for the approach that produced the run ()
+   Task: the identifier of the task
+	 me15sava: MediaEal Search And Anchoring Task 2015
+	  tv15lnk: TRECVid Hyperlinking Task 2015
+	   me14sh: MediaEval Search and Hyperlinking 2014
+   Team: the identifier of the team submitting the task
+   RunType: the identifier for the sub-task (or runType)
+	 S: Search run
+	 L: Linking run
+   Priority: a integer (low = high priority) assigned by the participant
+   Segmentation: the way how the result segments were defined 
+	 Ss: speech sentence segmentation
+	 Sp: speech segment segmentation
+	 Sh: shot segmentation
+	  F: fixed length segmentation
+	  L: lexical cohesian segmentation
+	  P: use prosodic features for segmentation
+	  O: other segmentation
+   TranscriptType: the transcript being used 
+	 I: LIMSI transcripts
+	 M: Manual subtitles
+	 S: NST/Sheffield
+	 U: LIUM transcripts
+	 N: No speech information
+   AdditionalFeatures: other features being used, a concatenation of 
+	 M: Metadata
+	 V: Visual features
+	 O: Other information
+	 N: No additional features
+   Description: a very short for the approach that produced the run.
 
 History:
 2015-06-30 made more general
@@ -90,14 +93,14 @@ def checkRunName(runName):
     error = [ 
             "Error: invalid run name. Run names should follow the pattern:",
             "Task_Team_RunType_Priority_Segmentation_TranscriptType_AdditionalFeatures_Description[.???], where",
-            "   Task is the descriptor of the task",
-            "   Team is the ID of the team submitting the task",
-            "   RunType is one of\n" + printList(runTypesList),
-            "   Priority is a number (low = high priority) assigned by the participant",
-            "   Segmentation is a combination of \n" + printList(segmentationsList),
-            "   TranscriptType is one of \n" + printList(asrFeaturesList),
-            "   AdditionalFeatures is a combination of \n" + printList(additionalFeaturesList),
-            "   Description is a very short for the approach that produced the run ()"
+            "   Task: the identifier of the task\n" + printList(taskTypesList),
+            "   Team: the identifier of the team submitting the task",
+            "   RunType: the identifier for the sub-task (or runType)\n" + printList(runTypesList),
+            "   Priority: a integer (low = high priority) assigned by the participant",
+            "   Segmentation: the way how the result segments were defined \n" + printList(segmentationsList),
+            "   TranscriptType: the transcript being used \n" + printList(asrFeaturesList),
+            "   AdditionalFeatures: other features being used, a concatenation of \n" + printList(additionalFeaturesList),
+            "   Description: a very short for the approach that produced the run."
             ]
     error = '\n'.join(error)
     return False, error
@@ -437,9 +440,11 @@ def main():
           errors = errors[0:20]
           errors.append('... %d more errors ...' % (nerrors - 10))
         report = '\n'.join(errors)
+    else:
+      report = runInfo
     
     if error:
-      print 'Run', runName
+      print 'Run file:', runName
       print re.sub('(^|\n)','\\1\t', report)
       anyErrors = True
       print ""

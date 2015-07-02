@@ -111,6 +111,7 @@ def do_open(fn):
 if __name__ == "__main__":
   parser = OptionParser(usage="usage: %prog [options] qrel submission-file" )
   parser.add_option("-k", "--kind", dest="kind", help="Input format kind ['linking', 'search'], default linking.", metavar="kind", default='linking')
+  parser.add_option("-i", "--items", dest="items", help="Comman separated list of items to evaluate", metavar="items", default=None)
   parser.add_option("-s", "--segments", dest="segments", help="Calculate Segment Statistics", metavar="segments", default=True)
   parser.add_option("-b", "--binned", dest="binned", help="Calculate Binned Statistics", metavar="binned", default=True)
   parser.add_option("-B", "--binSize", dest="binSize", help="Bin Size", metavar="binSize", default=5*60)
@@ -154,6 +155,8 @@ if __name__ == "__main__":
   recs = map(formatQrel, do_open(qrel))
   recs.sort(key=lambda rec: (rec['anchorId'], rec['target']))
   anchors = set(map(lambda rec: rec['anchorId'], recs))
+  if opt.items:
+    anchors = set(opt.items.split(','))
   rels = dict()
   nonRels = dict()
   judged = dict()
@@ -215,6 +218,8 @@ if __name__ == "__main__":
     
     targets = map(lambda x: x['target'], trecs)
     
+    print targets[:5]
+    
     #
     # Create binary array of relevant / non relevant states for the ranking
     #
@@ -250,6 +255,8 @@ if __name__ == "__main__":
     trecsBin = makeBinList(targets, BIN_SIZE)
     qrelsBin = makeBinDict(rawRels[anchorId], BIN_SIZE)
     qnonrelsBin = makeBinDict(rawNonRels[anchorId], BIN_SIZE)
+
+    print trecsBin[:5]
 
     numrelBin = sum([ len(v) for v in qrelsBin.values()])
     relevanceStatiBin = map(lambda target: getRelevanceExact(qrelsBin, qnonrelsBin, target), trecsBin)
