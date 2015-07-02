@@ -30,9 +30,9 @@ class MAiSPCalculator:
       self.recall_pts.append(self.rel_secs)
 
   def calc_one(self, trec):
-    trans = trec['target'][0]
-    stime = trec['target'][1]
-    etime = trec['target'][2]
+    trans = trec[0]
+    stime = trec[1]
+    etime = trec[2]
     w = (stime, etime)
 
     if not self.qrels.has_key(trans):
@@ -123,4 +123,33 @@ def overlap_windows(w1, w2):
 
 def remove_empty_windows(windows, epsilon=0.01):
     return [w for w in windows if w[1] - w[0] >= epsilon]
+
+def _groupIntoVideos(segments):
+  '''
+  Groups segments by their video id 
+  '''
+  from collections import defaultdict
+  import itertools
+  
+  grouped = defaultdict(list)
+  for video, segments in itertools.groupby(segments, key=lambda rec: rec[0]):
+    segments = list(segments)
+    grouped[video].extend(segments)
+  return grouped
+
+def test():
+  ranking  = [(1, 0, 5), (1, 5, 10), (1, 10, 15), (1, 23, 23), (1, 27, 27), (1, 100, 200), (3, 10, 15)]
+  qrels    = _groupIntoVideos([(1, 15, 25), (1, 30, 35), (2, 3, 20) ])
+  qnonrels = _groupIntoVideos([(1, 0, 10), (1, 105, 120)])
+  
+  print ranking
+  print qrels
+  print qnonrels
+  
+  maispCalc = MAiSPCalculator(qrels)
+  maispCalc.calc(ranking)
+  print maispCalc.get_iAsp()
+    
+if __name__ == '__main__':
+  test()
 
