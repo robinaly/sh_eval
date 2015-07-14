@@ -172,16 +172,14 @@ def loadVideoFiles(runInfo):
   Read data about the collection and the queries / anchors
   '''
   import xml.etree.ElementTree as ET
-  if runInfo['task'] == 'me14sh':
+  videoFiles = dict()
+  if runInfo['task'] == 'me14sh' or runInfo['task'] == 'me15sava' or runInfo['task'] == 'tv15hlk':
     fn = os.path.join(os.path.dirname(os.path.realpath(__file__)), '..', 'data', 'cAXES.txt')
-  elif runInfo['task'] == 'tv15hlk':
-    fn = os.path.join(os.path.dirname(os.path.realpath(__file__)), '..', 'data', 'cAXES.txt')
+    with open(fn) as f:
+      videoFilesList = [ line.split() for line in f ]
+      videoFiles = dict( map(lambda x: (x[0], (x[1], h2Sec(x[1]))), videoFilesList))
   else:
-    sys.exit(1)
-  
-  with open(fn) as f:
-    videoFilesList = [ line.split() for line in f ]
-  videoFiles = dict( map(lambda x: (x[0], (x[1], h2Sec(x[1]))), videoFilesList))
+    print "WARNING - function loadVideoFiles: cannot find video list for task type %s" % runInfo['task']
   return videoFiles
   
 def loadAnchors(runInfo):
