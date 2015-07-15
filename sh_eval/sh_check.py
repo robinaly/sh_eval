@@ -174,7 +174,7 @@ def loadVideoFiles(runInfo):
   import xml.etree.ElementTree as ET
   if runInfo['task'] == 'me14sh':
     fn = os.path.join(os.path.dirname(os.path.realpath(__file__)), '..', 'data', 'cAXES.txt')
-  elif runInfo['task'] == 'tv15hlk':
+  elif runInfo['task'] == 'tv15lnk':
     fn = os.path.join(os.path.dirname(os.path.realpath(__file__)), '..', 'data', 'cAXES.txt')
   else:
     sys.exit(1)
@@ -191,7 +191,7 @@ def loadAnchors(runInfo):
     fn = os.path.join(os.path.dirname(os.path.realpath(__file__)), '..', 'data', 'me14sh_linking_testSet_anchors.xml')
     tree = ET.parse(fn)
     anchorsDef = [ [anchor.find('anchorId').text, anchor.find('fileName').text, anchor.find('startTime').text, anchor.find('endTime').text] for anchor in tree.findall('.//anchor') ]
-  elif runInfo['task'] == 'tv15hlk':
+  elif runInfo['task'] == 'tv15lnk':
     fn = os.path.join(os.path.dirname(os.path.realpath(__file__)), '..', 'data', 'tv15hlk_test_anchors.xml')
     tree = ET.parse(fn)
     anchorsDef = [ [anchor.find('anchorId').text, anchor.find('video').text, anchor.find('startTime').text, anchor.find('endTime').text] for anchor in tree.findall('.//anchor') ]
