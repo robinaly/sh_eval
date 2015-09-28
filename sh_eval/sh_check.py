@@ -175,7 +175,7 @@ def loadVideoFiles(runInfo):
   if runInfo['task'] == 'me14sh':
     fn = os.path.join(os.path.dirname(os.path.realpath(__file__)), '..', 'data', 'cAXES.txt')
   elif runInfo['task'] == 'tv15lnk':
-  videoFiles = dict()
+    videoFiles = dict()
   if runInfo['task'] == 'me14sh' or runInfo['task'] == 'me15sava' or runInfo['task'] == 'tv15lnk':
     fn = os.path.join(os.path.dirname(os.path.realpath(__file__)), '..', 'data', 'cAXES.txt')
     with open(fn) as f:
@@ -260,7 +260,7 @@ def checkSearchRun(runName, runInfo):
         errors.append(reportError(lineno, "Invalid number of fields: " + line))
         continue
       if field[0] not in queries:
-        errors.append(reportError(lineno, "Invalid item id: " + field[0]))
+        errors.append(reportError(lineno, "Unknown item id: " + field[0]))
         continue
       # mark item as seen
       foundItems.add(field[0])
@@ -323,7 +323,6 @@ def checkSearchRun(runName, runInfo):
 # confidenceScore   A floating point value describing the confidence of the retrieval system that the target segment is a suitable link target
 # runName   A identifier for the retrieval system used, see also RunSubmission2013  
 def checkLinkingRun(runName, runInfo):
-  
   anchors, anchorDefinitions = loadAnchors(runInfo)
   videoFiles = loadVideoFiles(runInfo)
   anchors = set(anchors)
@@ -342,17 +341,16 @@ def checkLinkingRun(runName, runInfo):
         errors.append(reportError(lineno, "Invalid number of fields. " + line))
         continue
       if not field[0] in anchors:
-        errors.append(reportError(lineno, "Invalid anchor id: " + field[0]))
+        #errors.append(reportError(lineno, "Unknown anchor id: " + field[0], t='warning'))
         continue
       if lastAnchor != field[0]:
         if field[0] in foundAnchors:
-          errors.append(reportError(lineno, "Rementioning of anchor: " + field[0]))
+          errors.append(reportError(lineno, "Re-mentioning of anchor: " + field[0]))
           continue
         lastAnchor = field[0]
         lastRank = 0
         seenSegments = IT([])
       foundAnchors.add(field[0])
-
       if field[2] not in videoFiles:
         errors.append(reportError(lineno, "Invalid video file: " + field[2]))
         continue
@@ -437,9 +435,9 @@ def main():
       nerrors = len(errors)
       if nerrors > 0:
         error = True
-        if nerrors > 10:
-          errors = errors[0:20]
-          errors.append('... %d more errors ...' % (nerrors - 10))
+        #if nerrors > 10:
+        #  errors = errors[0:20]
+        #  errors.append('... %d more errors ...' % (nerrors - 10))
         report = '\n'.join(errors)
     else:
       report = runInfo

@@ -34,8 +34,8 @@ class IntervalTree:
 	def search(self, begin, end=None):
 		if end:
 			result = []
- 
-			for j in xrange(begin, end+1):
+			# was for j in xrange(begin, end+1): // not sure why the +1 is needed
+			for j in xrange(begin, end):
 				for k in self.search(j):
 					result.append(k)
 				result = list(set(result))

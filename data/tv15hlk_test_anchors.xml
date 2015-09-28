@@ -321,14 +321,6 @@
 </anchor>
 
 <anchor>
-   <anchorId>anchor_41</anchorId>
-   <refId>5541322342b47e3d4f7e55e3</refId>
-   <video>v20080730_203000_bbctwo_francescos_mediterranean_voyage</video>
-   <startTime>660.00</startTime>
-   <endTime>780.00</endTime>
-</anchor>
-
-<anchor>
    <anchorId>anchor_42</anchorId>
    <refId>5541322342b47e3d4f7e55e3</refId>
    <video>v20080716_163500_bbcone_serious_ocean</video>
@@ -910,30 +902,6 @@
    <video>v20080613_210000_bbcfour_quincy_jones_the_many</video>
    <startTime>1.18</startTime>
    <endTime>1.20</endTime>
-</anchor>
-
-<anchor>
-   <anchorId>anchor_115</anchorId>
-   <refId>55672e9d4331696359dec5c1</refId>
-   <video>v20080531_203000_bbcthree_top_gear</video>
-   <startTime>50.31</startTime>
-   <endTime>50.44</endTime>
-</anchor>
-
-<anchor>
-   <anchorId>anchor_116</anchorId>
-   <refId>55672e9d4331696359dec5c1</refId>
-   <video>v20080531_203000_bbcthree_top_gear</video>
-   <startTime>50.38</startTime>
-   <endTime>50.41</endTime>
-</anchor>
-
-<anchor>
-   <anchorId>anchor_117</anchorId>
-   <refId>55672e9d4331696359dec5c1</refId>
-   <video>v20080709_200000_bbcone_celebrity_masterchef</video>
-   <startTime>36.15</startTime>
-   <endTime>36.30</endTime>
 </anchor>
 
 <anchor>

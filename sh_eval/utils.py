@@ -1,9 +1,18 @@
 from math import *
 import re
+import os
+import sys
 
 def reportError(line, errstr):
   error = True
   return "Error in line " + str(line) + ": " + errstr
+  
+def do_open(fn, mode):
+  import gzip
+  if fn.endswith('.gz'): 
+    return gzip.open(fn, mode)
+  else:
+    return open(fn, mode)
 
 def isAnchor(anchor):
   return anchor in anchors
@@ -50,6 +59,250 @@ def isScore(s):
     return True
   except:
     return False
+
+def readSearchResults(in_fn):
+  with do_open(in_fn, 'r') as f:
+    anchors = []
+    lineno = 0
+    for line in f:
+      lineno += 1
+      line = line.strip()
+      field = line.split()
+      record = { 'line': line, 'lineno': lineno }
+      def error(s,v=''):
+        record['errorStr'] = s
+        record['status'] = 'e'
+        record['errorValue'] = v
+        
+      if len(field) != 9:
+        error("Invalid number of fields", len(field))
+        yield record
+        continue
+      
+      record['qid'] = field[0]
+      record['video'] = field[2]
+      record['run'] = field[-1]
+      if not isTime(field[3]):
+        error("Invalid start time", field[3])
+      else:
+        record['start'] = ToSec(field[3])
+      if not isTime(field[4]):
+        error("Invalid end time", field[4])
+      else:
+        record['end'] = ToSec(field[4])
+      if not isTime(field[5]):
+        error("Invalid jump-in time", field[5])
+      else:
+        record['jumpin'] = ToSec(field[5])
+      rank = 0
+      try:
+        record['rank'] = int(field[6])
+      except:
+        error("Invalid rank", field[6])
+      if not isScore(field[7]):
+        error("Invalid score", field[7])
+      else:
+        record['score'] = float(field[7])
+      yield record
+
+# Field 
+# Explanation 
+# videoId     The identifier of the video (without extension) of the result segment
+# "Q0"        a legacy constant 
+# startTime   The starting time of the anchor (mins.secs) 
+# endTime     The end time of the anchor (mins.secs) 
+# rank        The rank of the result segment for this query  
+# confidenceScore   A floating point value describing the confidence of the retrieval system that the segment is an anchor
+# runName   A identifier for the retrieval system, see also RunSubmission2013 
+def readAnchoringResults(in_fn):
+  # def isTime(s):
+  #   try:
+  #     s = float(s)
+  #     return True
+  #   except:
+  #     return False
+  #
+  # def ToSec(s):
+  #   return int(float(s))
+  
+  with do_open(in_fn, 'r') as f:
+    anchors = []
+    lineno = 0
+    for line in f:
+      lineno += 1
+      line = line.strip()
+      field = line.split()
+      record = { 'line': line, 'lineno': lineno, 'errors': [] }
+      def error(s,v=''):
+        record['errors'].append((s,v))
+        
+      if len(field) != 7:
+        error("Invalid number of fields", len(field))
+        yield record
+        continue
+      
+      record['qid'] = field[0]
+      record['run'] = field[-1]
+      
+      if not isTime(field[2]):
+        error("Invalid start time", field[2])
+      else:
+        record['start'] = ToSec(field[2])
+        
+        
+      if not isTime(field[3]):
+        error("Invalid end time", field[3])
+      else:
+        record['end'] = ToSec(field[3])
+        
+        
+      rank = 0
+      try:
+        record['rank'] = int(field[4])
+      except:
+        error("Invalid rank", field[4])
+        
+      if not isScore(field[5]):
+        error("Invalid score", field[5])
+      else:
+        record['score'] = float(field[5])
+        
+      yield record
+
+
+def readLinkingResults(in_fn):
+  with do_open(in_fn, 'r') as f:
+    anchors = []
+    lineno = 0
+    for line in f:
+      lineno += 1
+      line = line.strip()
+      field = line.split()
+      record = { 'line': line, 'lineno': lineno }
+      def error(s,v=''):
+        record['errorStr'] = s
+        record['status'] = 'e'
+        record['errorValue'] = v
+        
+      if len(field) != 8:
+        error("Invalid number of fields", len(field))
+        yield record
+        continue
+      
+      record['qid'] = field[0]
+      record['video'] = field[2]
+      record['run'] = field[-1]
+      if not isTime(field[3]):
+        error("Invalid start time", field[3])
+      else:
+        record['start'] = ToSec(field[3])
+      if not isTime(field[4]):
+        error("Invalid end time", field[4])
+      else:
+        record['end'] = ToSec(field[4])
+      rank = 0
+      try:
+        record['rank'] = int(field[5])
+      except:
+        error("Invalid rank", field[5])
+      if not isScore(field[6]):
+        error("Invalid score", field[6])
+      else:
+        record['score'] = float(field[6])
+      yield record
+
+
+def loadVideoFiles(opt):
+  '''
+  Read data about the collection and the queries / anchors
+  '''
+  import xml.etree.ElementTree as ET
+  if opt.task == 'me14sh':
+    fn = os.path.join(os.path.dirname(os.path.realpath(__file__)), '..', 'data', 'cAXES.txt')
+  elif opt.task == 'tv15lnk':
+    videoFiles = dict()
+  if opt.task == 'me14sh' or opt.task == 'me15sava' or opt.task == 'tv15lnk':
+    fn = os.path.join(os.path.dirname(os.path.realpath(__file__)), '..', 'data', 'cAXES.txt')
+    with open(fn) as f:
+      videoFilesList = [ line.split() for line in f ]
+      videoFiles = dict( map(lambda x: (x[0], (x[1], h2Sec(x[1]))), videoFilesList))
+    blacklist = set()
+    fn = os.path.join(os.path.dirname(os.path.realpath(__file__)), '..', 'data', 'cAXES.blacklist.txt')
+    if os.path.isfile(fn):
+      with open(fn) as f:
+        for line in f:
+          blacklist.add(line.strip())
+  elif opt.task == 'me15sava_anchoring':
+    fn = os.path.join(os.path.dirname(os.path.realpath(__file__)), '..', 'data', 'cAnchoring15.txt')
+    with open(fn) as f:
+      videoFilesList = [ line.split() for line in f ]
+      videoFiles = dict( map(lambda x: (x[0], (x[1], h2Sec(x[1]))), videoFilesList))
+    blacklist = set()
+    fn = os.path.join(os.path.dirname(os.path.realpath(__file__)), '..', 'data', 'cAnchoring15.blacklist.txt')
+    if os.path.isfile(fn):
+      with open(fn) as f:
+        for line in f:
+          blacklist.add(line.strip())
+  else:
+    print "WARNING - function loadVideoFiles: cannot find video list for task type %s" % opt.task
+    sys.exit(1)
+  return videoFiles, blacklist
+
+def loadAnchorVideos(opt):
+  # read anchors 
+  if opt.task == 'me15sava_anchoring':
+    fn = os.path.join(os.path.dirname(os.path.realpath(__file__)), '..', 'data', 'me15sava_anchoring_test_inputVideoFiles.txt')
+    videos = [ line.strip() for line in do_open(fn, 'r') ]
+  else:
+    print "unknown task", opt.task
+    sys.exit(1)
+
+  return videos
+  
+def loadAnchors(opt):
+  # read anchors 
+  import xml.etree.ElementTree as ET
+  if opt.task == 'me14sh':
+    fn = os.path.join(os.path.dirname(os.path.realpath(__file__)), '..', 'data', 'me14sh_linking_testSet_anchors.xml')
+    tree = ET.parse(fn)
+    anchorsDef = [ [anchor.find('anchorId').text, anchor.find('fileName').text, anchor.find('startTime').text, anchor.find('endTime').text] for anchor in tree.findall('.//anchor') ]
+  elif opt.task == 'tv15lnk':
+    fn = os.path.join(os.path.dirname(os.path.realpath(__file__)), '..', 'data', 'tv15hlk_test_anchors.xml')
+    tree = ET.parse(fn)
+    anchorsDef = [ [anchor.find('anchorId').text, anchor.find('video').text, anchor.find('startTime').text, anchor.find('endTime').text] for anchor in tree.findall('.//anchor') ]
+  else:
+    print "unknown task"
+    sys.exit(1)
+    
+  anchorsDef = map(lambda x: {'anchorId': x[0], 'video': x[1], 'start': ToSec(x[2]), 'end': ToSec(x[3])}, anchorsDef)
+  
+  anchorDefinitions = dict( map(lambda x: (x['anchorId'], x), anchorsDef))
+  anchors = list(sorted(anchorDefinitions.keys()))
+
+  return anchors, anchorDefinitions
+
+def loadQueries(opt):
+  # read anchors
+  import xml.etree.ElementTree as ET
+  if opt.task == 'me14sh':
+    fn = os.path.join(os.path.dirname(os.path.realpath(__file__)), '..', 'data', 'me14sh_search_testSet_queries.xml')
+    tree = ET.parse(fn)
+    queryDef = [ [anchor.find('queryId').text, anchor.find('queryText').text] for anchor in tree.findall('.//top') ]
+
+  elif opt.task == 'me15sava':
+    fn = os.path.join(os.path.dirname(os.path.realpath(__file__)), '..', 'data', 'me15sava_search_test_queries.xml')
+    tree = ET.parse(fn)
+    queryDef = [ [anchor.find('itemId').text, anchor.find('queryText').text] for anchor in tree.findall('.//top') ]
+  else:
+    print "unknown task"
+    sys.exit(1)
+    
+  queryDef = map(lambda x: {'queryId': x[0], 'text': x[1]}, queryDef)
+  
+  queryDef = dict( map(lambda x: (x['queryId'], x), queryDef))
+  queries = list(sorted(queryDef.keys()))
+  
+  return queries, queryDef 
 
 
 def sec2H(sec): 
@@ -431,6 +684,7 @@ class LengthRel(Stat):
     lengths = []
     for video, segments in qrel.iteritems():
        lengths.extend(map(lambda trec: trec[2]-trec[1], segments))
+    if len(lengths) == 0: return 0.0
     return sum(lengths) / float(len(lengths))
 
   def agg(self):

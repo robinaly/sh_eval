@@ -216,9 +216,7 @@ if __name__ == "__main__":
   
     numrel = sum([ len(v) for v in qrels.values()])
     
-    targets = map(lambda x: x['target'], trecs)
-    
-    print targets[:5]
+    targets = map(lambda x: x['target'], trecs)    
     
     #
     # Create binary array of relevant / non relevant states for the ranking
@@ -255,8 +253,6 @@ if __name__ == "__main__":
     trecsBin = makeBinList(targets, BIN_SIZE)
     qrelsBin = makeBinDict(rawRels[anchorId], BIN_SIZE)
     qnonrelsBin = makeBinDict(rawNonRels[anchorId], BIN_SIZE)
-
-    print trecsBin[:5]
 
     numrelBin = sum([ len(v) for v in qrelsBin.values()])
     relevanceStatiBin = map(lambda target: getRelevanceExact(qrelsBin, qnonrelsBin, target), trecsBin)
