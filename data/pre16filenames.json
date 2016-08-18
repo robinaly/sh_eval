@@ -1,0 +1,113 @@
+[
+  {
+    "name": "team", 
+    "description": "the identifier of the team submitting the task",
+    "re": "[^_]+"
+  }, 
+  {
+    "name": "runType", 
+    "description": "the identifier for the sub-task (or runType)",
+    "options": [
+      {
+        "code": "S", 
+        "description": "Search run"
+      }, 
+      {
+        "code": "L", 
+        "description": "Linking run"
+      }
+    ]
+  }, 
+  {
+    "name": "priority", 
+    "description": "a integer (low = high priority) assigned by the participant",
+    "re": "\\d+"
+  }, 
+  {
+    "name": "segmentationType", 
+    "description": "the way how the result segments were defined",
+    "options": [
+      {
+        "code": "Ss", 
+        "description": "speech sentence segmentation"
+      }, 
+      {
+        "code": "Sp", 
+        "description": "speech segment segmentation"
+      }, 
+      {
+        "code": "Sh", 
+        "description": "shot segmentation"
+      }, 
+      {
+        "code": "F", 
+        "description": "fixed length segmentation"
+      }, 
+      {
+        "code": "L", 
+        "description": "lexical cohesian segmentation"
+      }, 
+      {
+        "code": "P", 
+        "description": "use prosodic features for segmentation"
+      }, 
+      {
+        "code": "O", 
+        "description": "other segmentation"
+      }
+    ]
+  }, 
+  {
+    "name": "asrFeatures", 
+    "description": "the transcript being used",
+    "options": [
+      {
+        "code": "I", 
+        "description": "LIMSI transcripts"
+      }, 
+      {
+        "code": "M", 
+        "description": "Manual subtitles"
+      }, 
+      {
+        "code": "S", 
+        "description": "NST/Sheffield"
+      }, 
+      {
+        "code": "U", 
+        "description": "LIUM transcripts"
+      }, 
+      {
+        "code": "N", 
+        "description": "No speech information"
+      }
+    ]
+  }, 
+  {
+    "name": "additionalFeatures",
+    "description": "other features being used, a concatenation of", 
+    "options": [
+      {
+        "code": "M", 
+        "description": "Metadata"
+      }, 
+      {
+        "code": "V", 
+        "description": "Visual features"
+      }, 
+      {
+        "code": "O", 
+        "description": "Other information"
+      }, 
+      {
+        "code": "N", 
+        "description": "No additional features"
+      }
+    ]
+  }, 
+  {
+    "name": "description", 
+    "re": "[^_]+",
+    "description": "description of your run"
+  }
+]
