@@ -19,23 +19,6 @@ from IntervalTree import *
 from optparse import OptionParser
 import itertools
 
-lineno = 0
-error = False
-
-def reportError(line, errstr, t='error'):
-  if line < 0:
-    if t=='warning':
-      return "Warning on line %5d: %s" % (line, errstr)
-    else:
-      return "Error: %s" % (line, errstr)
-  if t == 'warning':
-    return "Warning on line %5d: %s" % (line, errstr)
-  return "Error on line %5d: %s" % (line, errstr)
-
-def printList(l):
-  maxlen = max(map(lambda e: len(e[0]), l))+1
-  formatS = ('\t%' + str(maxlen) + 's: %s')
-  return '\n'.join(map(lambda e: formatS % e, l))
 
 NOTSEEN = []
 
@@ -72,7 +55,7 @@ def fixSearchRun(opt, in_fn, out_fn):
   error = False
   errors = []
   queries, queryDefs = loadQueries(opt)
-  videoFiles, blacklist = loadVideoFiles(opt)
+  videoFiles, blacklist = loadVideoFiles(opt.task)
   lastAnchor = ""
   lastRank = 0
   foundItems = set()
@@ -206,8 +189,8 @@ def fixAnchoringRun(opt, in_fn, out_fn):
   lineno = 0
   error = False
   errors = []
-  anchorVideos = loadAnchorVideos(opt)
-  videoFiles, blacklist = loadVideoFiles(opt)
+  anchorVideos = loadAnchorVideos(opt.task)
+  videoFiles, blacklist = loadVideoFiles(opt.task)
   foundItems = set()
   foundQueries = set()
   seenSegments = IT([])
@@ -361,8 +344,8 @@ def fixAnchoringRun(opt, in_fn, out_fn):
 # confidenceScore   A floating point value describing the confidence of the retrieval system that the target segment is a suitable link target
 # runName   A identifier for the retrieval system used, see also RunSubmission2013  
 def fixLinkingRun(opt, in_fn, out_fn):
-  anchors, anchorDefinitions = loadAnchors(opt)
-  videoFiles, blacklist = loadVideoFiles(opt)
+  anchors, anchorDefinitions = loadAnchors(opt.task)
+  videoFiles, blacklist = loadVideoFiles(opt.task)
   anchors = set(anchors)
   seenSegments = IT([])
   def formatSegment(field):
@@ -481,7 +464,7 @@ def recursiveAdd(f):
 
 def main():
   parser = OptionParser(usage="usage: %prog [options] submission-file outptut-submission-file" )
-  parser.add_option("-k", "--kind", dest="kind", help="Input format kind ['linking', 'search'], default linking.", metavar="kind", default='linking')
+  parser.add_option("-k", "--kind", dest="kind", help="Run kind ['linking', 'search'], default linking.", metavar="kind", default='linking')
   parser.add_option("-t", "--task", dest="task", help=".", metavar="task", default='tv15lnk')
   parser.add_option("-q", "--qid", dest="qid", help=".", metavar="qid", default='*')
   parser.add_option("-r", "--rank", dest="rank", help=".", metavar="rank", default='1000')
@@ -497,7 +480,7 @@ def main():
     errors = fixSearchRun(opt, in_fn, out_fn)
   elif opt.kind == 'anchoring':
     errors = fixAnchoringRun(opt, in_fn, out_fn)
-  else:
+  else: # must be linking
     errors = fixLinkingRun(opt, in_fn, out_fn)
     
   if errors:

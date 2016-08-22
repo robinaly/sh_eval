@@ -5,20 +5,6 @@
     "re": "[^_]+"
   }, 
   {
-    "name": "runType", 
-    "description": "the identifier for the sub-task (or runType)",
-    "options": [
-      {
-        "code": "S", 
-        "description": "Search run"
-      }, 
-      {
-        "code": "L", 
-        "description": "Linking run"
-      }
-    ]
-  },
-  {
     "name": "priority", 
     "description": "a integer (low = high priority) assigned by the participant",
     "re": "\\d+"
@@ -58,24 +44,42 @@
     ]
   }, 
   {
+    "name": "visualFeatures", 
+    "description": "the visual features being used",
+    "options": [
+      {
+        "code": "A", 
+        "description": "Provided AlexNet features"
+      }, 
+      {
+        "code": "D", 
+        "description": "Deep Learning features from known networks (e.g. from caffee model zoo https://github.com/BVLC/caffe/wiki/Model-Zoo)"
+      }, 
+      {
+        "code": "O", 
+        "description": "Other visual features"
+      }, 
+      {
+        "code": "N", 
+        "description": "No visual features"
+      }
+    ]
+  }, 
+  {
     "name": "asrFeatures", 
     "description": "the transcript being used",
     "options": [
       {
-        "code": "I", 
-        "description": "LIMSI transcripts"
+        "code": "I12", 
+        "description": "LIMSI transcripts 2012"
       }, 
       {
-        "code": "M", 
-        "description": "Manual subtitles"
-      }, 
-      {
-        "code": "S", 
-        "description": "NST/Sheffield"
+        "code": "I16", 
+        "description": "LIMSI transcripts 2016"
       }, 
       {
         "code": "U", 
-        "description": "LIUM transcripts"
+        "description": "LIUM transcripts 2012"
       }, 
       {
         "code": "N", 
@@ -89,11 +93,7 @@
     "options": [
       {
         "code": "M", 
-        "description": "Metadata"
-      }, 
-      {
-        "code": "V", 
-        "description": "Visual features"
+        "description": "metadata provided with the video"
       }, 
       {
         "code": "O", 
@@ -107,7 +107,7 @@
   }, 
   {
     "name": "description", 
-    "re": "[^_]+",
-    "description": "description of your run"
+    "re": "[\\w-]+",
+    "description": "short description of your run (use - as space)"
   }
 ]

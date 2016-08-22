@@ -10,38 +10,10 @@ Usage:
 python ./sh_check/.py <F> ...
 where <F> is either a path to a file or a directory that consists only of run files
 
-Task_Team_RunType_Priority_Segmentation_TranscriptType_AdditionalFeatures_Description[.???], where
-   Task: the identifier of the task
-	 me15sava: MediaEal Search And Anchoring Task 2015
-	  tv15lnk: TRECVid Hyperlinking Task 2015
-	   me14sh: MediaEval Search and Hyperlinking 2014
-   Team: the identifier of the team submitting the task
-   RunType: the identifier for the sub-task (or runType)
-	 S: Search run
-	 L: Linking run
-   Priority: a integer (low = high priority) assigned by the participant
-   Segmentation: the way how the result segments were defined 
-	 Ss: speech sentence segmentation
-	 Sp: speech segment segmentation
-	 Sh: shot segmentation
-	  F: fixed length segmentation
-	  L: lexical cohesian segmentation
-	  P: use prosodic features for segmentation
-	  O: other segmentation
-   TranscriptType: the transcript being used 
-	 I: LIMSI transcripts
-	 M: Manual subtitles
-	 S: NST/Sheffield
-	 U: LIUM transcripts
-	 N: No speech information
-   AdditionalFeatures: other features being used, a concatenation of 
-	 M: Metadata
-	 V: Visual features
-	 O: Other information
-	 N: No additional features
-   Description: a very short for the approach that produced the run.
+The format of the filename depends on the task. Please see the data/ directory for relevant descriptions.
 
 History:
+2016-08-18 options now optionl
 2015-06-30 made more general
 
 2014-08-12 sorted the anchors that weren't mentioned in the run
@@ -54,180 +26,8 @@ from IntervalTree import *
 lineno = 0
 error = False
 
-def reportError(line, errstr, t='error'):
-  if line < 0:
-    if t=='warning':
-      return "Warning on line %5d: %s" % (line, errstr)
-    else:
-      return "Error: %s" % (line, errstr)
-  if t == 'warning':
-    return "Warning on line %5d: %s" % (line, errstr)
-  return "Error on line %5d: %s" % (line, errstr)
-
-def printList(l):
-  maxlen = max(map(lambda e: len(e[0]), l))+1
-  formatS = ('\t%' + str(maxlen) + 's: %s')
-  return '\n'.join(map(lambda e: formatS % e, l))
-
-def do_open(fn, mode):
-  import gzip
-  if fn.endswith('.gz'): 
-    return gzip.open(fn, mode)
-  else:
-    return open(fn, mode)
-
 NOTSEEN = []
-
-#
-# Check run name to conform to pattern
-#
-def checkRunName(runName):
-  import os
-  runName = os.path.basename(runName)
-  generalPattern = '(?P<task>[^_]+)_(?P<team>[^_]+)_(?P<runType>[^_]+)_(?P<Priority>[^_]+)_(?P<segmentation>[^_]+)_(?P<asrFeature>[^_]+)_(?P<additionalFeatures>[^_.]+)(?P<description>_[^_]+)?(\..+)?$'
-  result = {}
-  result['filename'] = runName
-
-  m = re.match(generalPattern, runName)
-  if m == None:
-    error = [ 
-            "Error: invalid run name. Run names should follow the pattern:",
-            "Task_Team_RunType_Priority_Segmentation_TranscriptType_AdditionalFeatures_Description[.???], where",
-            "   Task: the identifier of the task\n" + printList(taskTypesList),
-            "   Team: the identifier of the team submitting the task",
-            "   RunType: the identifier for the sub-task (or runType)\n" + printList(runTypesList),
-            "   Priority: a integer (low = high priority) assigned by the participant",
-            "   Segmentation: the way how the result segments were defined \n" + printList(segmentationsList),
-            "   TranscriptType: the transcript being used \n" + printList(asrFeaturesList),
-            "   AdditionalFeatures: other features being used, a concatenation of \n" + printList(additionalFeaturesList),
-            "   Description: a very short for the approach that produced the run."
-            ]
-    error = '\n'.join(error)
-    return False, error
-
-  ok = True
-  errors = []
-  result['team'] = m.group('team')
-
-  task = m.group('task')
-  if task not in tasks:
-    ok = False
-    errors.append("Invalid task '" + task + "'. Valid tasks are :\n" + printList(taskTypesList))
-  else:
-    result['task'] = task
-
-  runType = m.group('runType')
-  if runType not in runTypes:
-    ok = False
-    errors.append("Invalid run type '" + runType + "'. Valid run types are :\n" + printList(runTypesList))
-  else:
-    result['runType'] = runType
-    
-  m2 = re.match('\d+', m.group('Priority'))
-  if not m:
-    ok = False
-    errors.append("Invalid priority number");
-  else:
-    result['priority'] = m.group('Priority')
   
-  segmentation = m.group('segmentation')
-  pattern = '(' + '|'.join(segmentations) + ')'
-  mS = re.match('^'+pattern+'+$', segmentation)
-  if mS == None:
-    ok = False
-    errors.append("Invalid segmentation '" + segmentation + "'. Segmentations should be a combination of: \n" + printList(segmentationsList))
-  else:
-    segmentation = re.findall(pattern, segmentation)
-    result['segmentation'] = segmentation  
-
-  asrFeature = m.group('asrFeature')
-  pattern = '(' + '|'.join(asrFeatures) + ')'
-  mS = re.match('^'+pattern+'+$', asrFeature)
-  if mS == None:
-    ok = False
-    errors.append("Invalid transcript type '" + asrFeature + "'. Transcript type should be a combination of: \n" + printList(asrFeaturesList))
-  else:
-    asrFeature = re.findall(pattern, asrFeature)
-    result['asrFeature'] = asrFeature  
-
-  additionalFeature = m.group('additionalFeatures')
-  if additionalFeature != None:
-    pattern = '(' + '|'.join(additionalFeatures) + ')'
-    mS = re.match('^'+pattern+'+$', additionalFeature)
-    if mS == None:
-      ok = False      
-      errors.append("Invalid additionalFeature '" + additionalFeature + "'. Additional features should be a combination of: \n" + printList(additionalFeaturesList))
-    else:
-      additionalFeature = re.findall(pattern, additionalFeature)
-      result['additionalFeature'] = additionalFeature 
-  else:
-    result['additionalFeature'] = '' 
-  if ok:
-    return True, result
-  return False, '\n'.join(errors)
-
-
-def loadVideoFiles(runInfo):
-  '''
-  Read data about the collection and the queries / anchors
-  '''
-  import xml.etree.ElementTree as ET
-  if runInfo['task'] == 'me14sh':
-    fn = os.path.join(os.path.dirname(os.path.realpath(__file__)), '..', 'data', 'cAXES.txt')
-  elif runInfo['task'] == 'tv15lnk':
-    videoFiles = dict()
-  if runInfo['task'] == 'me14sh' or runInfo['task'] == 'me15sava' or runInfo['task'] == 'tv15lnk':
-    fn = os.path.join(os.path.dirname(os.path.realpath(__file__)), '..', 'data', 'cAXES.txt')
-    with open(fn) as f:
-      videoFilesList = [ line.split() for line in f ]
-      videoFiles = dict( map(lambda x: (x[0], (x[1], h2Sec(x[1]))), videoFilesList))
-  else:
-    print "WARNING - function loadVideoFiles: cannot find video list for task type %s" % runInfo['task']
-  return videoFiles
-  
-def loadAnchors(runInfo):
-  # read anchors 
-  import xml.etree.ElementTree as ET
-  if runInfo['task'] == 'me14sh':
-    fn = os.path.join(os.path.dirname(os.path.realpath(__file__)), '..', 'data', 'me14sh_linking_testSet_anchors.xml')
-    tree = ET.parse(fn)
-    anchorsDef = [ [anchor.find('anchorId').text, anchor.find('fileName').text, anchor.find('startTime').text, anchor.find('endTime').text] for anchor in tree.findall('.//anchor') ]
-  elif runInfo['task'] == 'tv15lnk':
-    fn = os.path.join(os.path.dirname(os.path.realpath(__file__)), '..', 'data', 'tv15hlk_test_anchors.xml')
-    tree = ET.parse(fn)
-    anchorsDef = [ [anchor.find('anchorId').text, anchor.find('video').text, anchor.find('startTime').text, anchor.find('endTime').text] for anchor in tree.findall('.//anchor') ]
-  else:
-    sys.exit(1)
-    
-  anchorsDef = map(lambda x: {'anchorId': x[0], 'video': x[1], 'start': ToSec(x[2]), 'end': ToSec(x[3])}, anchorsDef)
-  
-  anchorDefinitions = dict( map(lambda x: (x['anchorId'], x), anchorsDef))
-  anchors = list(sorted(anchorDefinitions.keys()))
-
-  return anchors, anchorDefinitions
-
-def loadQueries(runInfo):
-  # read anchors
-  import xml.etree.ElementTree as ET
-  if runInfo['task'] == 'me14sh':
-    fn = os.path.join(os.path.dirname(os.path.realpath(__file__)), '..', 'data', 'me14sh_search_testSet_queries.xml')
-    tree = ET.parse(fn)
-    queryDef = [ [anchor.find('queryId').text, anchor.find('queryText').text] for anchor in tree.findall('.//top') ]
-
-  elif runInfo['task'] == 'me15sava':
-    fn = os.path.join(os.path.dirname(os.path.realpath(__file__)), '..', 'data', 'me15sava_search_test_queries.xml')
-    tree = ET.parse(fn)
-    queryDef = [ [anchor.find('itemId').text, anchor.find('queryText').text] for anchor in tree.findall('.//top') ]
-  else:
-    sys.exit(1)
-    
-  queryDef = map(lambda x: {'queryId': x[0], 'text': x[1]}, queryDef)
-  
-  queryDef = dict( map(lambda x: (x['queryId'], x), queryDef))
-  queries = list(sorted(queryDef.keys()))
-  
-  return queries, queryDef 
-
 # 1. Search sub-task: 
 # Workshop participants are required to submit their search results using the following whitespace separated fields in one line for each found result segment:
 # Field 
@@ -246,7 +46,7 @@ def checkSearchRun(runName, runInfo):
   error = False
   errors = []
   queries, queryDefs = loadQueries(runInfo)
-  videoFiles = loadVideoFiles(runInfo)
+  videoFiles, blacklist = loadVideoFiles(runInfo['task'])
   lastAnchor = ""
   lastRank = 0
   foundItems = set()
@@ -323,8 +123,9 @@ def checkSearchRun(runName, runInfo):
 # confidenceScore   A floating point value describing the confidence of the retrieval system that the target segment is a suitable link target
 # runName   A identifier for the retrieval system used, see also RunSubmission2013  
 def checkLinkingRun(runName, runInfo):
-  anchors, anchorDefinitions = loadAnchors(runInfo)
-  videoFiles = loadVideoFiles(runInfo)
+  
+  anchors, anchorDefinitions = loadAnchors(runInfo['task'])
+  videoFiles, blacklist = loadVideoFiles(runInfo['task'])
   anchors = set(anchors)
   seenSegments = IT([])
   with do_open(runName, 'r') as f:
@@ -425,25 +226,20 @@ def main():
       runs.extend(recursiveAdd(file))
       
   for runName in runs:
-    ok, runInfo = checkRunName(runName)
-    error = not ok
+    ok, result = checkRunName(runName)
     if ok:
+      runInfo = result
       if runInfo['runType'] == 'S':
         errors = checkSearchRun(runName, runInfo)
       else:
         errors = checkLinkingRun(runName, runInfo)
-      nerrors = len(errors)
-      if nerrors > 0:
-        error = True
-        #if nerrors > 10:
-        #  errors = errors[0:20]
-        #  errors.append('... %d more errors ...' % (nerrors - 10))
-        report = '\n'.join(errors)
     else:
-      report = runInfo
-    
-    if error:
+      errors = result
+        
+    # print error indented
+    if len(errors) > 0:
       print 'Run file:', runName
+      report = '\n'.join(errors)
       print re.sub('(^|\n)','\\1\t', report)
       anyErrors = True
       print ""

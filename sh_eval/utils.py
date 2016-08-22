@@ -3,9 +3,16 @@ import re
 import os
 import sys
 
-def reportError(line, errstr):
-  error = True
-  return "Error in line " + str(line) + ": " + errstr
+def reportError(line, errstr, t='error'):
+  if line < 0:
+    if t=='warning':
+      return "Warning on line %5d: %s" % (line, errstr)
+    else:
+      return "Error: %s" % (line, errstr)
+  if t == 'warning':
+    return "Warning on line %5d: %s" % (line, errstr)
+  return "Error on line %5d: %s" % (line, errstr)
+
   
 def do_open(fn, mode):
   import gzip
@@ -212,84 +219,79 @@ def readLinkingResults(in_fn):
       yield record
 
 
-def loadVideoFiles(opt):
+def loadVideoFiles(task):
   '''
   Read data about the collection and the queries / anchors
   '''
-  import xml.etree.ElementTree as ET
-  if opt.task == 'me14sh':
-    fn = os.path.join(os.path.dirname(os.path.realpath(__file__)), '..', 'data', 'cAXES.txt')
-  elif opt.task == 'tv15lnk':
-    videoFiles = dict()
-  if opt.task == 'me14sh' or opt.task == 'me15sava' or opt.task == 'tv15lnk':
-    fn = os.path.join(os.path.dirname(os.path.realpath(__file__)), '..', 'data', 'cAXES.txt')
+  task2collection = {
+    'me14sh': 'cAXES',
+    'me15sava': 'cAXES',
+    'tv15lnk': 'cAXES',
+    'me15sava_anchoring': 'cAnchoring15',
+    'tv16lnk': 'bliptv2'
+  }
+  if task in task2collection:
+    collection = task2collection[task]
+    fn = os.path.join(os.path.dirname(os.path.realpath(__file__)), '..', 'data', collection + '.txt')
     with open(fn) as f:
       videoFilesList = [ line.split() for line in f ]
       videoFiles = dict( map(lambda x: (x[0], (x[1], h2Sec(x[1]))), videoFilesList))
     blacklist = set()
-    fn = os.path.join(os.path.dirname(os.path.realpath(__file__)), '..', 'data', 'cAXES.blacklist.txt')
-    if os.path.isfile(fn):
-      with open(fn) as f:
-        for line in f:
-          blacklist.add(line.strip())
-  elif opt.task == 'me15sava_anchoring':
-    fn = os.path.join(os.path.dirname(os.path.realpath(__file__)), '..', 'data', 'cAnchoring15.txt')
-    with open(fn) as f:
-      videoFilesList = [ line.split() for line in f ]
-      videoFiles = dict( map(lambda x: (x[0], (x[1], h2Sec(x[1]))), videoFilesList))
-    blacklist = set()
-    fn = os.path.join(os.path.dirname(os.path.realpath(__file__)), '..', 'data', 'cAnchoring15.blacklist.txt')
+    fn = os.path.join(os.path.dirname(os.path.realpath(__file__)), '..', 'data', collection + '.blacklist.txt')
     if os.path.isfile(fn):
       with open(fn) as f:
         for line in f:
           blacklist.add(line.strip())
   else:
-    print "WARNING - function loadVideoFiles: cannot find video list for task type %s" % opt.task
+    print "WARNING - function loadVideoFiles: cannot find video list for unknown task %s" % task
     sys.exit(1)
   return videoFiles, blacklist
 
-def loadAnchorVideos(opt):
+def loadAnchorVideos(task):
   # read anchors 
-  if opt.task == 'me15sava_anchoring':
+  if task == 'me15sava_anchoring':
     fn = os.path.join(os.path.dirname(os.path.realpath(__file__)), '..', 'data', 'me15sava_anchoring_test_inputVideoFiles.txt')
     videos = [ line.strip() for line in do_open(fn, 'r') ]
   else:
-    print "unknown task", opt.task
+    print "unknown task", task
     sys.exit(1)
 
   return videos
   
-def loadAnchors(opt):
+def loadAnchors(task):
   # read anchors 
   import xml.etree.ElementTree as ET
-  if opt.task == 'me14sh':
+  if task == 'me14sh':
     fn = os.path.join(os.path.dirname(os.path.realpath(__file__)), '..', 'data', 'me14sh_linking_testSet_anchors.xml')
     tree = ET.parse(fn)
     anchorsDef = [ [anchor.find('anchorId').text, anchor.find('fileName').text, anchor.find('startTime').text, anchor.find('endTime').text] for anchor in tree.findall('.//anchor') ]
-  elif opt.task == 'tv15lnk':
+  elif task == 'tv15lnk':
     fn = os.path.join(os.path.dirname(os.path.realpath(__file__)), '..', 'data', 'tv15hlk_test_anchors.xml')
     tree = ET.parse(fn)
     anchorsDef = [ [anchor.find('anchorId').text, anchor.find('video').text, anchor.find('startTime').text, anchor.find('endTime').text] for anchor in tree.findall('.//anchor') ]
+  elif task == 'tv16lnk':
+    fn = os.path.join(os.path.dirname(os.path.realpath(__file__)), '..', 'data', 'tv16hlk_test_anchors.xml')
+    tree = ET.parse(fn)
+    anchorsDef = [ [anchor.find('anchorId').text, anchor.find('video').text, anchor.find('startTime').text, anchor.find('endTime').text] for anchor in tree.findall('.//anchor') ]    
   else:
     print "unknown task"
     sys.exit(1)
     
-  anchorsDef = map(lambda x: {'anchorId': x[0], 'video': x[1], 'start': ToSec(x[2]), 'end': ToSec(x[3])}, anchorsDef)
-  
+  anchorsDef = map(lambda x: {'anchorId': x[0], 'video': x[1], 'start': ToSec(x[2]), 'end': ToSec(x[3])}, anchorsDef)  
   anchorDefinitions = dict( map(lambda x: (x['anchorId'], x), anchorsDef))
   anchors = list(sorted(anchorDefinitions.keys()))
 
   return anchors, anchorDefinitions
 
-def loadQueries(opt):
+def loadQueries(task):
   # read anchors
   import xml.etree.ElementTree as ET
-  if opt.task == 'me14sh':
+  if task == 'me14sh':
     fn = os.path.join(os.path.dirname(os.path.realpath(__file__)), '..', 'data', 'me14sh_search_testSet_queries.xml')
     tree = ET.parse(fn)
     queryDef = [ [anchor.find('queryId').text, anchor.find('queryText').text] for anchor in tree.findall('.//top') ]
 
-  elif opt.task == 'me15sava':
+  elif task == 'me15sava':
     fn = os.path.join(os.path.dirname(os.path.realpath(__file__)), '..', 'data', 'me15sava_search_test_queries.xml')
     tree = ET.parse(fn)
     queryDef = [ [anchor.find('itemId').text, anchor.find('queryText').text] for anchor in tree.findall('.//top') ]
@@ -298,7 +300,6 @@ def loadQueries(opt):
     sys.exit(1)
     
   queryDef = map(lambda x: {'queryId': x[0], 'text': x[1]}, queryDef)
-  
   queryDef = dict( map(lambda x: (x['queryId'], x), queryDef))
   queries = list(sorted(queryDef.keys()))
   
@@ -717,131 +718,86 @@ class RelJudge(Stat):
   def agg(self):
     return None
 
-taskTypesList = [
-  ('me15sava', 'MediaEal Search And Anchoring Task 2015'),
-  ('tv15lnk', 'TRECVid Hyperlinking Task 2015'),
-  ('me14sh',   'MediaEval Search and Hyperlinking 2014')
-]
-tasks, _ = zip(*taskTypesList)
+tasks = {
+  'me15sava': {'description': 'MediaEal Search And Anchoring Task 2015', 'filenameFormat': 'pre16filenames.json'},
+  'tv15lnk':  {'description': 'TRECVid Hyperlinking Task 2015', 'filenameFormat': 'pre16filenames.json'},
+  'me14sh':   {'description': 'MediaEval Search and Hyperlinking 2014', 'filenameFormat': 'pre16filenames.json'},
+  'tv16lnk':  {'description': 'TRECVid Hyperlinking Task 2016', 'filenameFormat': 'tv16lnkFilenames.json', 'runType': 'L'},
+}
 
-runTypesList = [
-  ('S', 'Search run'),
-  ('L', 'Linking run'),
-]
-runTypes, _ = zip(*runTypesList)
-
-segmentationsList = [
-  ('Ss', 'speech sentence segmentation'),
-  ('Sp', 'speech segment segmentation'),
-  ('Sh', 'shot segmentation'),
-  ('F',  'fixed length segmentation'),
-  ('L',  'lexical cohesian segmentation'),
-  ('P',  'use prosodic features for segmentation'),    
-  ('O',  'other segmentation'),
-]
-segmentationsDict = dict(segmentationsList)
-segmentations, _ = zip(*segmentationsList)
-
-asrFeaturesList = [
-  ('I', 'LIMSI transcripts'),
-  ('M', 'Manual subtitles'),
-  ('S', 'NST/Sheffield'),
-  ('U', 'LIUM transcripts'),
-  ('N', 'No speech information'),
-]
-asrFeaturesDict = dict(asrFeaturesList)
-asrFeatures, _ = zip(*asrFeaturesList)
-
-additionalFeaturesList = [
-  ('M', 'Metadata'),
-  ('V', 'Visual features'),
-  ('O', 'Other information'),
-  ('N', 'No additional features'),
-]
-additionalFeaturesDict = dict(additionalFeaturesList)
-additionalFeatures, _ = zip(*additionalFeaturesList)
-
-def printList(l):
-  maxlen = max(map(lambda e: len(e[0]), l))+1
-  formatS = ('\t%' + str(maxlen) + 's: %s')
-  return '\n'.join(map(lambda e: formatS % e, l))
-
-
+#
+# Check run name to conform to pattern
+#
 def checkRunName(runName):
-  import os
+  import os, json
   runName = os.path.basename(runName)
-  generalPattern = 'me14sh_(?P<team>[^_]+)_(?P<runType>[^_]+)_(?P<Priority>[^_]+)_(?P<segmentation>[^_]+)_(?P<asrFeature>[^_]+)_(?P<additionalFeatures>[^_.]+)(?P<description>_[^_]+)?(\..+)?$'
   result = {}
   result['filename'] = runName
-
-  m = re.match(generalPattern, runName)
-  if m == None:
-    error = [ 
-            "Error: invalid run name. Run names should follow the pattern:",
-            "me14sh_TEAM_RunType_Priority_Segmentation_TranscriptType_AdditionalFeatures_Description[.???], where",
-            "   RunType is one of\n" + printList(runTypesList),
-            "   Priority is a number (low = high priority) assigned by the participant",
-            "   Segmentation is a combination of \n" + printList(segmentationsList),
-            "   TranscriptType is one of \n" + printList(asrFeaturesList),
-            "   AdditionalFeatures is a combination of \n" + printList(additionalFeaturesList),
-            "   Description is a very short for the approach that produced the run ()"
-            ]
-    error = '\n'.join(error)
-    return False, error
-
-  ok = True
-  errors = []
-  result['team'] = m.group('team')
-
-  runType = m.group('runType')
-  if runType not in runTypes:
-    ok = False
-    errors.append("Invalid run type '" + runType + "'. Valid run types are :\n" + printList(runTypesList))
-  else:
-    result['runType'] = runType
-    
-  m2 = re.match('\d+', m.group('Priority'))
-  if not m:
-    ok = False
-    errors.append("Invalid priority number");
-  else:
-    result['priority'] = m.group('Priority')
   
-  segmentation = m.group('segmentation')
-  pattern = '(' + '|'.join(segmentations) + ')'
-  mS = re.match('^'+pattern+'+$', segmentation)
-  if mS == None:
-    ok = False
-    errors.append("Invalid segmentation '" + segmentation + "'. Segmentations should be a combination of: \n" + printList(segmentationsList))
+  if '_' not in runName:
+    error = "Error, invalid filename. Filename should start with one of " + ', '.join(tasks.keys())
+    return False, error
+    
+  pos = runName.index('_')
+  task = runName[:pos]
+  remainder = runName[pos+1:]
+  # chop off things after the last . 
+  try:
+    rpos = remainder.rindex('_')
+    rposdot = remainder.rindex('.')
+    if rposdot > rpos: remainder = remainder[:rposdot]
+  except:
+    pass
+    
+  result['task'] = task
+  
+  if task not in tasks:
+    error = "Error, invalid filename. Filename should start with one of " + ', '.join(tasks.keys())
+    return False, error
+  
+  fn = os.path.join(os.path.dirname(os.path.realpath(__file__)), '..', 'data', tasks[task]['filenameFormat'])
+  fields = json.load(open(fn))
+  
+  errors = []
+  
+  # check whether there was only one sub task
+  if 'runType' in tasks[task]:
+    result['runType'] = tasks[task]['runType']
+  
+  values = remainder.split('_', len(fields))
+  if len(values) != len(fields):
+    errors = ["Error, invalid number of fields: %d (should be %d) " % (len(values), len(fields)) ]
   else:
-    segmentation = re.findall(pattern, segmentation)
-    result['segmentation'] = segmentation  
+    for field, value in zip(fields, values):
+      if 're' in field:
+        if re.match(field['re'], value) == None: errors.append('Invalid value for field ' + field['name'])
+        result[field['name']] = value
+      else:
+        optionCodes = map(lambda o: o['code'], field['options'])
+        pattern = '(' + '|'.join(optionCodes) + ')'
+        ms = re.match('^' + pattern + '+$', value)
+        if not ms:
+          errors.append('Invalid value for field ' + field['name'])
+        else:
+          result[field['name']] = re.findall(pattern, value)
 
-  asrFeature = m.group('asrFeature')
-  pattern = '(' + '|'.join(asrFeatures) + ')'
-  mS = re.match('^'+pattern+'+$', asrFeature)
-  if mS == None:
-    ok = False
-    errors.append("Invalid transcript type '" + asrFeature + "'. Transcript type should be a combination of: \n" + printList(asrFeaturesList))
+  if len(errors) > 0:
+    prefix = [ "Error: invalid run name. Run names should follow the pattern:" ]
+    prefix.append('_'.join(['Task'] + [ field['name'] for field in fields]) + '.???, where')
+    prefix.append('')
+    for field in fields:
+      prefix.append('  %s: %s' % (field['name'], field['description'] ))
+      if 're' in field:
+        prefix.append('    matching ' + field['re'])
+      else:
+        for option in field['options']:
+          prefix.append('    %s: %s' % (option['code'], option['description'] ))
+    errors = prefix + errors
+  
+  if len(errors)>0:
+    return False, errors
   else:
-    asrFeature = re.findall(pattern, asrFeature)
-    result['asrFeature'] = asrFeature  
-
-  additionalFeature = m.group('additionalFeatures')
-  if additionalFeature != None:
-    pattern = '(' + '|'.join(additionalFeatures) + ')'
-    mS = re.match('^'+pattern+'+$', additionalFeature)
-    if mS == None:
-      ok = False      
-      errors.append("Invalid additionalFeature '" + additionalFeature + "'. Additional features should be a combination of: \n" + printList(additionalFeaturesList))
-    else:
-      additionalFeature = re.findall(pattern, additionalFeature)
-      result['additionalFeatures'] = additionalFeature 
-  else:
-    result['additionalFeatures'] = '' 
-  if ok:
     return True, result
-  return False, '\n'.join(errors)
 
 def toSegment(anchor):
   return (anchor['video'], anchor['start'], anchor['end'])
