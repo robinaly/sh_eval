@@ -106,8 +106,8 @@
     ]
   }, 
   {
-    "name": "description", 
-    "re": "[\\w-]+",
-    "description": "short description of your run (use - as space)"
+    "name": "runId", 
+    "re": "[\\w-]{,20}",
+    "description": "short identifier of your run (use - as space)"
   }
 ]
