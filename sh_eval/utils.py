@@ -337,13 +337,6 @@ def isRank(s):
   except:
     return False
   
-def isScore(s):
-  try:
-    i =  float(s)
-    return True
-  except:
-    return False
-
 def isTime(s):
   m = re.match('(\d+).(\d+)', s)
   if m == None: 

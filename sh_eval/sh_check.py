@@ -169,7 +169,7 @@ def checkLinkingRun(runName, runInfo):
         errors.append(reportError(lineno, "Non-consecutive rank: " + field[5]))
         continue
       lastRank = int(field[5])
-      if isScore(field[7]):
+      if isScore(field[6]):
         errors.append(reportError(lineno, "Invalid score: " + field[6]))
         continue
       if ToSec(field[4]) <= ToSec(field[3]):
