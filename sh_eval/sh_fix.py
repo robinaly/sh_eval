@@ -390,29 +390,29 @@ def fixLinkingRun(opt, in_fn, out_fn):
       for r, lineno, field in res:
         if rank >= opt.rank: break
         if field[2] not in videoFiles:
-          errors.append(reportError(lineno, "Invalid video file: " + field[2]))
+          errors.append(reportError(lineno, "Invalid video file: " + field[2] + "; ignoring result"))
           continue
         if field[2] in blacklist:
-          errors.append(reportError(lineno, "Video file was blacklisted: " + field[2]))
+          errors.append(reportError(lineno, "Video file was blacklisted: " + field[2] + "; ignoring result"))
           continue
         hours, videoSec = videoFiles[field[2]]
         if not isTime(field[3]):
-          errors.append(reportError(lineno, "Invalid start time: " + field[3]))
+          errors.append(reportError(lineno, "Invalid start time: " + field[3] + "; ignoring result"))
           continue  
         if not isTime(field[4]):
-          errors.append(reportError(lineno, "Invalid end time: " + field[4]))
+          errors.append(reportError(lineno, "Invalid end time: " + field[4] + "; ignoring result"))
           continue
         if not isRank(field[5]):
           #errors.append(reportError(lineno, "Invalid rank: " + field[5]))
           field[5] = str(rank)
         if not isScore(field[6]):
-          errors.append(reportError(lineno, "Invalid score: " + field[6]))
+          errors.append(reportError(lineno, "Invalid score: " + field[6] + "; ignoring result"))
           continue
-        if ToSec(field[4]) <= ToSec(field[3]):
-          errors.append(reportError(lineno, "%s end time before start time." % formatSegment(field)))
+        if ToSec(field[4]) < ToSec(field[3]):
+          errors.append(reportError(lineno, "%s end time before start time; ignoring result." % formatSegment(field)))
           continue
         if ToSec(field[3]) > videoSec:
-          errors.append(reportError(lineno, "%s is longer than the video [%s]." % (formatSegment(field), sec2String(videoSec)), t='warning'))
+          errors.append(reportError(lineno, "%s is longer than the video [%s]; ignoring result." % (formatSegment(field), sec2String(videoSec))))
           continue      
         start = ToSec(field[3])
         end = ToSec(field[4])
@@ -420,24 +420,23 @@ def fixLinkingRun(opt, in_fn, out_fn):
         field[4] = sec2String(end)
         duration = end - start
         if duration < 10:
-          errors.append(reportError(lineno, "%s is %d seconds long and shorter than 10sec; using 10 sec." % (formatSegment(field), duration)))
+          errors.append(reportError(lineno, "%s is %d seconds long, which is shorter than 10sec; using 10 sec." % (formatSegment(field), duration), t='warning'))
           field[4] = sec2String(start + 10)
         if duration > 2 * 60:
-          errors.append(reportError(lineno, "%s is %d seconds long and longer than 2min; using 2 min." % (formatSegment(field), duration)))
+          errors.append(reportError(lineno, "%s is %d seconds long, which is longer than 2min; using 2 min." % (formatSegment(field), duration), t='warning'))
           field[4] = sec2String(start + 2 * 60)
+          
         # check for overlap with anchor
         anchor = anchorDefinitions[field[0]]
         if field[2] == anchor['video']:
-          #if overlapTime(start, end, anchor['start'], anchor['end']):
-          #errors.append(reportError(lineno, "%s overlaps with anchor [%s:%s]." % (formatSegment(field), sec2String(anchor['start']), sec2String(anchor['end']))))
-          errors.append(reportError(lineno, "%s is in the same video as the anchor; discarding it." % (formatSegment(field))))
+          errors.append(reportError(lineno, "%s is in the same video as the anchor; ignoring result." % (formatSegment(field))))
           continue
         # check for overlap with previously returned segment
         s = Segment((field[2], ToSec(field[3]), ToSec(field[4])))
         f = seenSegments.search_seg(s)
         if f:
           f=f[0].get_tuple()
-          errors.append(reportError(lineno, "%s overlaps with previously returned segment [%s:%s]." % (formatSegment(field), sec2String(f[1]), sec2String(f[2]))))
+          errors.append(reportError(lineno, "%s overlaps with previously returned segment [%s:%s]; ignoring result." % (formatSegment(field), sec2String(f[1]), sec2String(f[2]))))
           continue
         seenSegments.add(s)
         rank +=  1
